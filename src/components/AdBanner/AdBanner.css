@@ -1,0 +1,47 @@
+.ad-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.ad-horizontal {
+  min-height: 90px;
+}
+
+.ad-vertical {
+  min-height: 250px;
+}
+
+.ad-square {
+  min-height: 250px;
+}
+
+.ad-in-feed {
+  min-height: 100px;
+  margin: 0.5rem 0;
+}
+
+.ad-anchor {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.25rem 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .ad-square {
+    display: none;
+  }
+
+  .ad-banner {
+    margin: 1rem 0;
+  }
+}
