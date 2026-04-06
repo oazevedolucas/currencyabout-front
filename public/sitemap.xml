@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://currencyabout.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencyabout.com/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://currencyabout.com/pt/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://currencyabout.com/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://currencyabout.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://currencyabout.com/de/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://currencyabout.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://currencyabout.com/ja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencyabout.com/" />
+  </url>
+
+  <!-- Currency Converter -->
+  <url>
+    <loc>https://currencyabout.com/converter</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Exchange Rates Today -->
+  <url>
+    <loc>https://currencyabout.com/exchange-rates-today</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Top currency pair pages -->
+  <url>
+    <loc>https://currencyabout.com/usd-to-brl</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/eur-to-brl</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/gbp-to-brl</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/jpy-to-brl</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/cad-to-brl</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/aud-to-brl</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/chf-to-brl</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/cny-to-brl</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/eur-to-usd</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/gbp-to-usd</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/usd-to-eur</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/usd-to-jpy</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/inr-to-usd</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/mxn-to-usd</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/krw-to-usd</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

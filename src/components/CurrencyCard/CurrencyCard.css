@@ -1,0 +1,113 @@
+.currency-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  cursor: default;
+}
+
+.currency-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.currency-card--active {
+  border-color: var(--color-primary-light);
+}
+
+.currency-card--active:hover {
+  border-color: var(--color-primary);
+}
+
+.currency-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.currency-card__flag {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.currency-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.currency-card__code-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.currency-card__code {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.04em;
+}
+
+.currency-card__symbol {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  padding: 1px 6px;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+.currency-card__name {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.2;
+}
+
+.currency-card__value {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 48px;
+  justify-content: center;
+}
+
+.currency-card__converted {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.currency-card__rate {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.currency-card__placeholder {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .currency-card {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .currency-card__flag {
+    font-size: 1.75rem;
+  }
+
+  .currency-card__converted {
+    font-size: 1.125rem;
+  }
+}

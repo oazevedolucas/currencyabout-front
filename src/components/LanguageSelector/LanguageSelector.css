@@ -1,0 +1,108 @@
+.lang-selector {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 200;
+}
+
+.lang-selector__trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  background: var(--color-surface);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.lang-selector__trigger:hover {
+  border-color: var(--color-primary-light);
+}
+
+.lang-selector__flag {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.lang-selector__code {
+  letter-spacing: 0.04em;
+}
+
+.lang-selector__chevron {
+  color: var(--color-text-muted);
+  transition: transform 200ms ease;
+}
+
+.lang-selector__chevron--open {
+  transform: rotate(180deg);
+}
+
+.lang-selector__dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 160px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  animation: lang-dropdown-in 150ms ease;
+  padding: 4px;
+}
+
+@keyframes lang-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lang-selector__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background 100ms ease;
+  text-align: left;
+}
+
+.lang-selector__option:hover {
+  background: var(--color-bg);
+}
+
+.lang-selector__option--active {
+  background: var(--color-primary-glow);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+@media (max-width: 640px) {
+  .lang-selector {
+    top: 12px;
+    right: 12px;
+  }
+
+  .lang-selector__trigger {
+    padding: 6px 10px;
+  }
+}
