@@ -10,7 +10,6 @@ import { CurrencyGrid } from '../components/CurrencyGrid/CurrencyGrid.jsx'
 import { PopularPairs } from '../components/PopularPairs/PopularPairs.jsx'
 import { FAQ } from '../components/FAQ/FAQ.jsx'
 import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
-import AdBanner from '../components/AdBanner/AdBanner.jsx'
 
 function formatRateDisplay(rate) {
   if (rate >= 100) return rate.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -135,9 +134,6 @@ export function CurrencyPairPage() {
         />
       </div>
 
-      {/* Ad: after conversion result */}
-      <AdBanner variant="horizontal" slot="slot2" />
-
       <div className="divider" />
 
       {/* SEO content block */}
@@ -166,9 +162,6 @@ export function CurrencyPairPage() {
       </p>
 
       <PopularPairs exclude={{ from: fromCode, to: toCode }} />
-
-      {/* Ad: before FAQ */}
-      <AdBanner variant="horizontal" slot="slot3" />
 
       <FAQ questions={faqQuestions} />
     </div>

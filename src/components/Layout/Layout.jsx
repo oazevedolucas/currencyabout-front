@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { useI18n } from '../../i18n/I18nContext.jsx'
 import { LanguageSelector } from '../LanguageSelector/LanguageSelector.jsx'
 import { POPULAR_PAIRS, pairUrl } from '../../seo/seoContent.js'
-import AdBanner from '../AdBanner/AdBanner.jsx'
 import './Layout.css'
 
 export function Layout({ children }) {
@@ -13,9 +12,6 @@ export function Layout({ children }) {
       <LanguageSelector />
       <div className="layout">
         {children}
-
-        {/* Ad: above footer */}
-        <AdBanner variant="horizontal" slot="slot2" />
 
         <footer className="footer">
           <nav className="footer__nav" aria-label="Popular currency conversions">
@@ -48,9 +44,6 @@ export function Layout({ children }) {
           </div>
         </footer>
       </div>
-
-      {/* Sticky anchor ad at bottom of viewport */}
-      <AdBanner variant="anchor" slot="slot3" />
     </>
   )
 }

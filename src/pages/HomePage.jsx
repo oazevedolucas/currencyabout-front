@@ -8,7 +8,6 @@ import { CurrencyGrid } from '../components/CurrencyGrid/CurrencyGrid.jsx'
 import { PopularPairs } from '../components/PopularPairs/PopularPairs.jsx'
 import { FAQ } from '../components/FAQ/FAQ.jsx'
 import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
-import AdBanner from '../components/AdBanner/AdBanner.jsx'
 
 export function HomePage() {
   const { t } = useI18n()
@@ -77,9 +76,6 @@ export function HomePage() {
         onCurrencyChange={converter.setFromCurrency}
       />
 
-      {/* Ad: below converter input */}
-      <AdBanner variant="horizontal" slot="slot1" />
-
       <div className="divider" />
 
       <CurrencyFilter
@@ -107,13 +103,7 @@ export function HomePage() {
         fromCurrency={converter.fromCurrency}
       />
 
-      {/* Ad: between grid and popular pairs */}
-      <AdBanner variant="horizontal" slot="slot2" />
-
       <PopularPairs />
-
-      {/* Ad: before FAQ */}
-      <AdBanner variant="horizontal" slot="slot3" />
 
       <FAQ questions={faqQuestions} />
     </div>

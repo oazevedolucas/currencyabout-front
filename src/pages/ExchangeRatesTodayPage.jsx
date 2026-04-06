@@ -8,7 +8,6 @@ import { getRate } from '../constants/currencies.js'
 import { useExchangeRates } from '../hooks/useExchangeRates.js'
 import { PopularPairs } from '../components/PopularPairs/PopularPairs.jsx'
 import { FAQ } from '../components/FAQ/FAQ.jsx'
-import AdBanner from '../components/AdBanner/AdBanner.jsx'
 
 function formatRate(rate) {
   if (rate >= 100) return rate.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -74,17 +73,12 @@ export function ExchangeRatesTodayPage() {
         </p>
       </header>
 
-      {/* Ad: below header */}
-      <AdBanner variant="horizontal" slot="slot1" />
-
-      {baseCurrencies.map((base, index) => {
+      {baseCurrencies.map((base) => {
         const baseCurrency = localizedCurrencies.find((c) => c.code === base)
         if (!baseCurrency) return null
 
         return (
           <section key={base} className="rates-table" aria-label={`${base} exchange rates`}>
-            {/* Ad: between rate tables (after first table) */}
-            {index > 0 && <AdBanner variant="in-feed" slot="slot2" />}
             <h2 className="rates-table__title">
               {baseCurrency.flag} {baseCurrency.name} ({base}) {t.seo?.ratesToday || 'Rates'}
             </h2>
@@ -118,10 +112,6 @@ export function ExchangeRatesTodayPage() {
       })}
 
       <PopularPairs />
-
-      {/* Ad: before FAQ */}
-      <AdBanner variant="horizontal" slot="slot3" />
-
       <FAQ questions={faqQuestions} />
     </div>
   )
