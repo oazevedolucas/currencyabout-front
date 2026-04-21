@@ -1,109 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
+  <!-- Homepage (highest priority; /converter removed as it's canonical to /) -->
   <url>
     <loc>https://currencyabout.com/</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencyabout.com/" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://currencyabout.com/pt/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://currencyabout.com/es/" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://currencyabout.com/fr/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://currencyabout.com/de/" />
-    <xhtml:link rel="alternate" hreflang="zh" href="https://currencyabout.com/zh/" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://currencyabout.com/ja/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencyabout.com/" />
-  </url>
-
-  <!-- Currency Converter -->
-  <url>
-    <loc>https://currencyabout.com/converter</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
   </url>
 
   <!-- Exchange Rates Today -->
   <url>
     <loc>https://currencyabout.com/exchange-rates-today</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Top currency pair pages -->
+  <!-- Popular currency pair pages -->
   <url>
     <loc>https://currencyabout.com/usd-to-brl</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/eur-to-brl</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/gbp-to-brl</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://currencyabout.com/eur-to-usd</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/gbp-to-usd</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/usd-to-eur</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://currencyabout.com/usd-to-jpy</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://currencyabout.com/jpy-to-brl</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/cad-to-brl</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/aud-to-brl</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/chf-to-brl</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/cny-to-brl</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://currencyabout.com/eur-to-usd</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://currencyabout.com/gbp-to-usd</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://currencyabout.com/usd-to-eur</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://currencyabout.com/usd-to-jpy</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/inr-to-usd</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/mxn-to-usd</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/krw-to-usd</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -111,36 +112,43 @@
   <!-- Guides / Editorial -->
   <url>
     <loc>https://currencyabout.com/guides</loc>
+    <lastmod>2026-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/guides/how-exchange-rates-work</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/guides/understanding-us-dollar</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/guides/understanding-euro</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/guides/sending-money-abroad</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/guides/best-time-to-exchange-currency</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/guides/major-world-currencies</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -148,21 +156,25 @@
   <!-- Company & Legal -->
   <url>
     <loc>https://currencyabout.com/about</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/contact</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/privacy-policy</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://currencyabout.com/terms</loc>
+    <lastmod>2026-04-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>

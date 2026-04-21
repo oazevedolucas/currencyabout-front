@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  max-width: 480px;
 }
 
 .currency-input__label {

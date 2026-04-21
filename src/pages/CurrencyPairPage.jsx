@@ -48,7 +48,12 @@ export function CurrencyPairPage() {
   if (!fromMeta || !toMeta) {
     return (
       <div className="page">
-        <SeoHead title="Currency pair not found | About Currency" description="The requested currency pair was not found." path={`/${pair}`} />
+        <SeoHead
+          title="Currency pair not found | About Currency"
+          description="The requested currency pair was not found."
+          path={`/${pair}`}
+          noindex
+        />
         <h1 className="header__title">Currency pair not found</h1>
         <p className="header__subtitle">
           <Link to="/">Go to homepage</Link>

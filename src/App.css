@@ -66,7 +66,164 @@
   background: var(--color-border);
 }
 
-/* Grid header */
+/* Hero stack: converter card + featured result side by side on wide screens */
+.hero-stack {
+  width: 100%;
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  justify-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-stack {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Premium converter surface: wraps input + quick-amounts.
+   No overflow:hidden — the currency-selector dropdown must escape the card. */
+.converter-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 20px;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .converter-card {
+    padding: 16px;
+    gap: 12px;
+  }
+}
+
+/* Section separators between page sections get breathing room */
+.page > .popular-pairs,
+.page > .faq {
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Empty state when no amount is entered yet */
+.results-empty {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 40px 24px;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.results-empty__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-primary-glow);
+  color: var(--color-primary-dark);
+  margin-bottom: 6px;
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+.results-empty__title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.results-empty__text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  max-width: 360px;
+  line-height: 1.55;
+}
+
+/* Results section: groups filter + header + grid per Gestalt common-region */
+.results-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.results-section__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.results-section__title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.results-section__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.results-section__meta {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.results-section__meta::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+.results-section__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.results-section__count {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+/* Legacy grid-header (kept for other pages that still use it) */
 .grid-header {
   width: 100%;
   display: flex;

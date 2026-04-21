@@ -1,0 +1,60 @@
+.sort-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-select__label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.sort-select__wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sort-select__input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 6px 28px 6px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 150ms var(--ease-out);
+  min-width: 160px;
+}
+
+.sort-select__input:hover {
+  border-color: var(--color-border-strong);
+}
+
+.sort-select__chevron {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .sort-select {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .sort-select__input {
+    min-width: 140px;
+  }
+}
