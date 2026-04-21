@@ -5,9 +5,27 @@ import { getHomeSeo, SITE_URL } from '../seo/seoContent.js'
 import { CurrencyInput } from '../components/CurrencyInput/CurrencyInput.jsx'
 import { CurrencyFilter } from '../components/CurrencyFilter/CurrencyFilter.jsx'
 import { CurrencyGrid } from '../components/CurrencyGrid/CurrencyGrid.jsx'
+import { CurrencyGridSkeleton } from '../components/CurrencyCard/CurrencyCardSkeleton.jsx'
 import { PopularPairs } from '../components/PopularPairs/PopularPairs.jsx'
 import { FAQ } from '../components/FAQ/FAQ.jsx'
 import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
+
+function PageHeader({ t, showLive }) {
+  return (
+    <header className="header">
+      {showLive && (
+        <span className="header__eyebrow">
+          <span className="header__eyebrow-dot" aria-hidden="true" />
+          {t.liveRatesEyebrow || 'Live daily rates'}
+        </span>
+      )}
+      <h1 className="header__title">
+        {t.title} <span>{t.titleHighlight}</span>
+      </h1>
+      <p className="header__subtitle">{t.subtitle}</p>
+    </header>
+  )
+}
 
 export function HomePage() {
   const { t } = useI18n()
@@ -18,14 +36,8 @@ export function HomePage() {
     return (
       <div className="page">
         <SeoHead title={seo.title} description={seo.description} path="/" />
-        <header className="header">
-          <h1 className="header__title">{t.title} <span>{t.titleHighlight}</span></h1>
-          <p className="header__subtitle">{t.subtitle}</p>
-        </header>
-        <div className="app__loading">
-          <div className="app__spinner" />
-          <p>{t.loading}</p>
-        </div>
+        <PageHeader t={t} showLive />
+        <CurrencyGridSkeleton count={8} />
       </div>
     )
   }
@@ -34,14 +46,16 @@ export function HomePage() {
     return (
       <div className="page">
         <SeoHead title={seo.title} description={seo.description} path="/" />
-        <header className="header">
-          <h1 className="header__title">{t.title} <span>{t.titleHighlight}</span></h1>
-          <p className="header__subtitle">{t.subtitle}</p>
-        </header>
-        <div className="app__error">
+        <PageHeader t={t} />
+        <div className="app__error" role="alert">
+          <div className="app__error-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
           <p className="app__error-title">{t.errorTitle}</p>
           <p className="app__error-detail">{converter.error}</p>
-          <button className="app__error-retry" onClick={() => window.location.reload()}>
+          <button className="btn btn--primary app__error-retry" onClick={() => window.location.reload()}>
             {t.retry}
           </button>
         </div>
@@ -61,12 +75,7 @@ export function HomePage() {
       <SeoHead title={seo.title} description={seo.description} path="/" />
       <BreadcrumbSchema items={[{ name: 'Home', url: SITE_URL }]} />
 
-      <header className="header">
-        <h1 className="header__title">
-          {t.title} <span>{t.titleHighlight}</span>
-        </h1>
-        <p className="header__subtitle">{t.subtitle}</p>
-      </header>
+      <PageHeader t={t} showLive />
 
       <CurrencyInput
         value={converter.rawValue}

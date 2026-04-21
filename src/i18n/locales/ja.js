@@ -30,6 +30,14 @@ export default {
   cacheTooltip: 'ローカルキャッシュデータ',
   freshTooltip: 'APIから更新されたデータ',
 
+  liveRatesEyebrow: '毎日のリアルタイムレート',
+  copyValue: '値をコピー',
+  copied: 'コピーしました！',
+  swapPair: '入れ替え',
+  switchToLight: 'ライトモードに切替',
+  switchToDark: 'ダークモードに切替',
+  skipToContent: 'メインへスキップ',
+
   seo: {
     homeDescription: 'リアルタイム為替レートで通貨を即座に変換。USD、EUR、GBP、BRL、JPYなど20+通貨の無料コンバーター。毎日更新。',
     converterTitle: '無料通貨コンバーター - ライブ為替レート | About Currency',

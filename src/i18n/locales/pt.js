@@ -30,6 +30,14 @@ export default {
   cacheTooltip: 'Dados em cache local',
   freshTooltip: 'Dados atualizados da API',
 
+  liveRatesEyebrow: 'Cotações do dia',
+  copyValue: 'Copiar valor',
+  copied: 'Copiado!',
+  swapPair: 'Inverter',
+  switchToLight: 'Mudar para tema claro',
+  switchToDark: 'Mudar para tema escuro',
+  skipToContent: 'Pular para o conteúdo',
+
   seo: {
     homeDescription: 'Converta moedas instantaneamente com cotações em tempo real. Conversor gratuito para USD, EUR, GBP, BRL, JPY e mais de 20 moedas. Atualizado diariamente.',
     converterTitle: 'Conversor de Moedas Grátis - Cotações ao Vivo | About Currency',

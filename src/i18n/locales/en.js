@@ -30,6 +30,14 @@ export default {
   cacheTooltip: 'Data from local cache',
   freshTooltip: 'Updated data from API',
 
+  liveRatesEyebrow: 'Live daily rates',
+  copyValue: 'Copy value',
+  copied: 'Copied!',
+  swapPair: 'Swap',
+  switchToLight: 'Switch to light mode',
+  switchToDark: 'Switch to dark mode',
+  skipToContent: 'Skip to main content',
+
   seo: {
     homeDescription: 'Convert currencies instantly with live exchange rates. Free real-time converter for USD, EUR, GBP, BRL, JPY and 20+ world currencies. Updated daily.',
     converterTitle: 'Free Currency Converter - Live Exchange Rates | About Currency',

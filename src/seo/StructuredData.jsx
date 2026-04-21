@@ -40,6 +40,35 @@ export function FAQSchema({ questions }) {
   )
 }
 
+export function ArticleSchema({ headline, description, url, datePublished, dateModified, author = 'About Currency Editorial Team' }) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline,
+    description,
+    url,
+    datePublished,
+    dateModified,
+    author: {
+      '@type': 'Organization',
+      name: author,
+      url: 'https://currencyabout.com/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'About Currency',
+      url: 'https://currencyabout.com',
+    },
+    mainEntityOfPage: url,
+  }
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    </Helmet>
+  )
+}
+
 export function CurrencyPairSchema({ from, to, rate, date }) {
   const schema = {
     '@context': 'https://schema.org',

@@ -30,6 +30,14 @@ export default {
   cacheTooltip: '本地缓存数据',
   freshTooltip: 'API 更新数据',
 
+  liveRatesEyebrow: '每日实时汇率',
+  copyValue: '复制数值',
+  copied: '已复制！',
+  swapPair: '交换',
+  switchToLight: '切换到浅色模式',
+  switchToDark: '切换到深色模式',
+  skipToContent: '跳到主要内容',
+
   seo: {
     homeDescription: '使用实时汇率即时转换货币。免费实时转换器，支持USD、EUR、GBP、BRL、JPY等20+种货币。每日更新。',
     converterTitle: '免费货币转换器 - 实时汇率 | About Currency',

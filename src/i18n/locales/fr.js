@@ -30,6 +30,14 @@ export default {
   cacheTooltip: 'Données en cache local',
   freshTooltip: 'Données mises à jour depuis l\'API',
 
+  liveRatesEyebrow: 'Taux quotidiens',
+  copyValue: 'Copier la valeur',
+  copied: 'Copié !',
+  swapPair: 'Inverser',
+  switchToLight: 'Passer au mode clair',
+  switchToDark: 'Passer au mode sombre',
+  skipToContent: 'Aller au contenu',
+
   seo: {
     homeDescription: 'Convertissez les devises instantanément avec des taux de change en temps réel. Convertisseur gratuit pour USD, EUR, GBP, BRL, JPY et plus de 20 devises.',
     converterTitle: 'Convertisseur de Devises Gratuit - Taux de Change en Direct | About Currency',

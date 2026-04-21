@@ -30,6 +30,14 @@ export default {
   cacheTooltip: 'Daten aus dem lokalen Cache',
   freshTooltip: 'Aktualisierte Daten von der API',
 
+  liveRatesEyebrow: 'Tagesaktuelle Kurse',
+  copyValue: 'Wert kopieren',
+  copied: 'Kopiert!',
+  swapPair: 'Tauschen',
+  switchToLight: 'Zu hellem Design wechseln',
+  switchToDark: 'Zu dunklem Design wechseln',
+  skipToContent: 'Zum Inhalt springen',
+
   seo: {
     homeDescription: 'Rechnen Sie Währungen sofort mit Live-Wechselkursen um. Kostenloser Echtzeit-Umrechner für USD, EUR, GBP, BRL, JPY und 20+ Währungen.',
     converterTitle: 'Kostenloser Währungsrechner - Live-Wechselkurse | About Currency',

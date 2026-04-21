@@ -13,7 +13,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 12px;
+  padding: 20px 28px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .pair-rate__value {
@@ -21,11 +26,45 @@
   font-weight: 700;
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
 }
 
 .pair-rate__date {
   font-size: 0.75rem;
   color: var(--color-text-muted);
+}
+
+.pair-rate__swap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 150ms var(--ease-out), color 150ms var(--ease-out), transform 150ms var(--ease-out);
+}
+
+.pair-rate__swap:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+.pair-rate__swap:active {
+  transform: scale(0.96);
+}
+
+.pair-rate__swap-icon {
+  transition: transform 250ms var(--ease-out);
+}
+
+.pair-rate__swap:hover .pair-rate__swap-icon {
+  transform: rotate(180deg);
 }
 
 .pair-result {
@@ -35,6 +74,74 @@
 
 .pair-result .currency-grid {
   grid-template-columns: 1fr;
+}
+
+/* Quick conversion table */
+.pair-table {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pair-table__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.pair-table__subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.pair-table__grid {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+  margin-top: 4px;
+}
+
+.pair-table__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px 16px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pair-table__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+  transition: background 120ms var(--ease-out);
+}
+
+.pair-table__row:last-child {
+  border-bottom: none;
+}
+
+.pair-table__row:hover {
+  background: var(--color-bg);
+}
+
+.pair-table__value {
+  font-weight: 600;
+  color: var(--color-primary-dark);
 }
 
 .pair-reverse {

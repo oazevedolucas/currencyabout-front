@@ -30,6 +30,14 @@ export default {
   cacheTooltip: 'Datos en caché local',
   freshTooltip: 'Datos actualizados de la API',
 
+  liveRatesEyebrow: 'Tarifas diarias',
+  copyValue: 'Copiar valor',
+  copied: '¡Copiado!',
+  swapPair: 'Invertir',
+  switchToLight: 'Cambiar a modo claro',
+  switchToDark: 'Cambiar a modo oscuro',
+  skipToContent: 'Ir al contenido',
+
   seo: {
     homeDescription: 'Convierte divisas al instante con tipos de cambio en tiempo real. Conversor gratuito para USD, EUR, GBP, BRL, JPY y más de 20 monedas.',
     converterTitle: 'Conversor de Divisas Gratis - Tipos de Cambio en Vivo | About Currency',

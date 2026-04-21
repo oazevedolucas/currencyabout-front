@@ -1,8 +1,5 @@
 .lang-selector {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  z-index: 200;
+  position: relative;
 }
 
 .lang-selector__trigger {
@@ -97,11 +94,6 @@
 }
 
 @media (max-width: 640px) {
-  .lang-selector {
-    top: 12px;
-    right: 12px;
-  }
-
   .lang-selector__trigger {
     padding: 6px 10px;
   }

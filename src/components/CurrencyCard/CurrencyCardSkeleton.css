@@ -1,0 +1,77 @@
+.currency-card-skeleton {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 136px;
+}
+
+.currency-card-skeleton__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.currency-card-skeleton__flag {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.currency-card-skeleton__info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.currency-card-skeleton__value {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.currency-card-skeleton__line {
+  height: 12px;
+  border-radius: 6px;
+}
+
+.currency-card-skeleton__line--xs { width: 50%; height: 10px; }
+.currency-card-skeleton__line--short { width: 35%; }
+.currency-card-skeleton__line--med { width: 60%; }
+.currency-card-skeleton__line--lg { width: 75%; height: 22px; }
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-border);
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-surface-elevated) 50%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer 1.4s infinite;
+  opacity: 0.6;
+}
+
+@keyframes skeleton-shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+@media (max-width: 640px) {
+  .currency-card-skeleton {
+    padding: 16px;
+  }
+}
