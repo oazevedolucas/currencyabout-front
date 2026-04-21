@@ -23,6 +23,7 @@ export function useCurrencyConverter(initialFrom = 'BRL', initialRawValue = '100
   const [fromCurrency, setFromCurrency] = useState(initialFrom)
   const [selectedCodes, setSelectedCodes] = useState(null)
   const [sortBy, setSortBy] = useState('strength-desc')
+  const [precision, setPrecision] = useState('rounded') // 'rounded' | 'precise'
 
   const allCodes = useMemo(() => {
     return new Set(currencies.map((c) => c.code))
@@ -105,6 +106,8 @@ export function useCurrencyConverter(initialFrom = 'BRL', initialRawValue = '100
     setSelectedCodes: handleFilterChange,
     sortBy,
     setSortBy,
+    precision,
+    setPrecision,
     amount,
     localizedCurrencies,
     targetCurrencies,

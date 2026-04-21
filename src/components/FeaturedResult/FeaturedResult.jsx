@@ -2,10 +2,10 @@ import { memo } from 'react'
 import { useI18n } from '../../i18n/I18nContext.jsx'
 import './FeaturedResult.css'
 
-function formatAmount(value) {
+function formatAmount(value, precision = 'rounded') {
   if (!Number.isFinite(value) || value === 0) return '0.00'
-  if (value >= 1000) return value.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-  return value.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 4 })
+  const max = precision === 'precise' ? 4 : 2
+  return value.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: max })
 }
 
 function formatRate(rate) {
@@ -14,7 +14,7 @@ function formatRate(rate) {
   return rate.toLocaleString('en', { minimumFractionDigits: 4, maximumFractionDigits: 4 })
 }
 
-export const FeaturedResult = memo(function FeaturedResult({ fromCurrency, toCurrency, amount, rate }) {
+export const FeaturedResult = memo(function FeaturedResult({ fromCurrency, toCurrency, amount, rate, precision = 'rounded' }) {
   const { t } = useI18n()
   if (!fromCurrency || !toCurrency) return null
 
@@ -44,7 +44,7 @@ export const FeaturedResult = memo(function FeaturedResult({ fromCurrency, toCur
           <div className="featured-result__value" key={pairKey}>
             <span className="featured-result__symbol">{toCurrency.symbol}</span>
             <span className="featured-result__number">
-              {hasValue ? formatAmount(converted) : '0.00'}
+              {hasValue ? formatAmount(converted, precision) : '0.00'}
             </span>
             <span className="featured-result__code">{toCurrency.code}</span>
           </div>

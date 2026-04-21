@@ -62,6 +62,13 @@ export default {
   },
   emptyStateTitle: '输入金额开始',
   emptyStateHint: '在上方输入数值或选择快捷金额，查看 20+ 种世界货币的实时汇率。',
+  precision: {
+    heading: '数字精度',
+    rounded: '四舍五入（2 位小数）',
+    precise: '精确（4 位小数）',
+    switchToRounded: '切换到四舍五入（2 位小数）',
+    switchToPrecise: '切换到精确（4 位小数）',
+  },
 
   seo: {
     homeDescription: '使用实时汇率即时转换货币。免费实时转换器，支持USD、EUR、GBP、BRL、JPY等20+种货币。每日更新。',

@@ -62,6 +62,13 @@ export default {
   },
   emptyStateTitle: '金額を入力して開始',
   emptyStateHint: '上に金額を入力するか、クイック金額を選んで20以上の世界通貨のリアルタイムレートを確認してください。',
+  precision: {
+    heading: '数値の精度',
+    rounded: '丸め (小数点2桁)',
+    precise: '詳細 (小数点4桁)',
+    switchToRounded: '丸めに切替 (小数点2桁)',
+    switchToPrecise: '詳細に切替 (小数点4桁)',
+  },
 
   seo: {
     homeDescription: 'リアルタイム為替レートで通貨を即座に変換。USD、EUR、GBP、BRL、JPYなど20+通貨の無料コンバーター。毎日更新。',

@@ -10,6 +10,7 @@ import { CurrencyGridSkeleton } from '../components/CurrencyCard/CurrencyCardSke
 import { PopularPairs } from '../components/PopularPairs/PopularPairs.jsx'
 import { QuickAmounts } from '../components/QuickAmounts/QuickAmounts.jsx'
 import { SortSelect } from '../components/SortSelect/SortSelect.jsx'
+import { PrecisionToggle } from '../components/PrecisionToggle/PrecisionToggle.jsx'
 import { FeaturedResult } from '../components/FeaturedResult/FeaturedResult.jsx'
 import { FAQ } from '../components/FAQ/FAQ.jsx'
 import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
@@ -154,6 +155,7 @@ export function HomePage() {
             toCurrency={topCurrency}
             amount={converter.amount}
             rate={topRate}
+            precision={converter.precision}
           />
         )}
       </div>
@@ -179,6 +181,7 @@ export function HomePage() {
               </span>
             </div>
             <div className="results-section__controls">
+              <PrecisionToggle value={converter.precision} onChange={converter.setPrecision} />
               <span className="results-section__count">
                 {converter.visibleCurrencies.length} / {converter.targetCurrencies.length}
               </span>
@@ -199,6 +202,7 @@ export function HomePage() {
             fromCurrency={converter.fromCurrency}
             highlightFirst={converter.sortBy === 'strength-desc'}
             grouped={converter.sortBy === 'continent'}
+            precision={converter.precision}
           />
         </section>
       )}

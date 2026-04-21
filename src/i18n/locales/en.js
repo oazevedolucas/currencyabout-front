@@ -62,6 +62,13 @@ export default {
   },
   emptyStateTitle: 'Enter an amount to start',
   emptyStateHint: 'Type a value above or pick a quick amount to see live rates across 20+ world currencies.',
+  precision: {
+    heading: 'Number precision',
+    rounded: 'Rounded (2 decimals)',
+    precise: 'Precise (4 decimals)',
+    switchToRounded: 'Switch to rounded (2 decimals)',
+    switchToPrecise: 'Switch to precise (4 decimals)',
+  },
 
   seo: {
     homeDescription: 'Convert currencies instantly with live exchange rates. Free real-time converter for USD, EUR, GBP, BRL, JPY and 20+ world currencies. Updated daily.',

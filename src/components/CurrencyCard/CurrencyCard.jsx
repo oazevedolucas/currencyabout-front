@@ -4,11 +4,9 @@ import { useI18n } from '../../i18n/I18nContext.jsx'
 import { pairUrl } from '../../seo/seoContent.js'
 import './CurrencyCard.css'
 
-function formatConverted(value) {
-  if (value >= 1000) {
-    return value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-  }
-  return value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 4 })
+function formatConverted(value, precision = 'rounded') {
+  const max = precision === 'precise' ? 4 : 2
+  return value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: max })
 }
 
 function formatRate(rate) {
@@ -20,13 +18,13 @@ function formatRate(rate) {
 
 const DETAIL_AMOUNTS = [1, 10, 100, 1000]
 
-export const CurrencyCard = memo(function CurrencyCard({ currency, amount, fromCurrency, rate, isTop = false }) {
+export const CurrencyCard = memo(function CurrencyCard({ currency, amount, fromCurrency, rate, isTop = false, precision = 'rounded' }) {
   const { t } = useI18n()
   const [copied, setCopied] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const converted = amount * rate
   const hasValue = amount > 0
-  const displayValue = hasValue ? formatConverted(converted) : '0,00'
+  const displayValue = hasValue ? formatConverted(converted, precision) : '0,00'
   const reverseRate = rate > 0 ? 1 / rate : 0
 
   const copyLabel = copied
@@ -144,7 +142,7 @@ export const CurrencyCard = memo(function CurrencyCard({ currency, amount, fromC
                   {amt.toLocaleString('en')} {fromCurrency}
                 </span>
                 <span className="currency-card__detail-to">
-                  {formatConverted(amt * rate)} {currency.code}
+                  {formatConverted(amt * rate, precision)} {currency.code}
                 </span>
               </li>
             ))}

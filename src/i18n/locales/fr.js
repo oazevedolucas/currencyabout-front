@@ -62,6 +62,13 @@ export default {
   },
   emptyStateTitle: 'Entrez un montant pour commencer',
   emptyStateHint: 'Saisissez une valeur ci-dessus ou choisissez un montant rapide pour voir les taux en direct de plus de 20 devises mondiales.',
+  precision: {
+    heading: 'Précision des nombres',
+    rounded: 'Arrondi (2 décimales)',
+    precise: 'Précis (4 décimales)',
+    switchToRounded: 'Passer en arrondi (2 décimales)',
+    switchToPrecise: 'Passer en précis (4 décimales)',
+  },
 
   seo: {
     homeDescription: 'Convertissez les devises instantanément avec des taux de change en temps réel. Convertisseur gratuit pour USD, EUR, GBP, BRL, JPY et plus de 20 devises.',

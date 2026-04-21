@@ -4,7 +4,7 @@ import { getRate, CONTINENT_META } from '../../constants/currencies.js'
 import { useI18n } from '../../i18n/I18nContext.jsx'
 import './CurrencyGrid.css'
 
-function CardRow({ currencies, allCurrencies, amount, fromCurrency, highlightFirst, startIdx }) {
+function CardRow({ currencies, allCurrencies, amount, fromCurrency, highlightFirst, startIdx, precision }) {
   return (
     <div className="currency-grid__row enter-stagger">
       {currencies.map((currency, idx) => (
@@ -15,13 +15,14 @@ function CardRow({ currencies, allCurrencies, amount, fromCurrency, highlightFir
           fromCurrency={fromCurrency}
           rate={getRate(allCurrencies, fromCurrency, currency.code)}
           isTop={highlightFirst && startIdx + idx === 0}
+          precision={precision}
         />
       ))}
     </div>
   )
 }
 
-export function CurrencyGrid({ currencies, allCurrencies, amount, fromCurrency, highlightFirst = false, grouped = false }) {
+export function CurrencyGrid({ currencies, allCurrencies, amount, fromCurrency, highlightFirst = false, grouped = false, precision = 'rounded' }) {
   const { t } = useI18n()
 
   const groups = useMemo(() => {
@@ -61,6 +62,7 @@ export function CurrencyGrid({ currencies, allCurrencies, amount, fromCurrency, 
                 fromCurrency={fromCurrency}
                 highlightFirst={highlightFirst}
                 startIdx={startIdx}
+                precision={precision}
               />
             </section>
           )
@@ -79,6 +81,7 @@ export function CurrencyGrid({ currencies, allCurrencies, amount, fromCurrency, 
           fromCurrency={fromCurrency}
           rate={getRate(allCurrencies, fromCurrency, currency.code)}
           isTop={highlightFirst && idx === 0}
+          precision={precision}
         />
       ))}
     </section>

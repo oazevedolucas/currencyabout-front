@@ -62,6 +62,13 @@ export default {
   },
   emptyStateTitle: 'Ingresa un monto para empezar',
   emptyStateHint: 'Escribe un valor arriba o elige un monto rápido para ver tasas en vivo de 20+ monedas del mundo.',
+  precision: {
+    heading: 'Precisión de números',
+    rounded: 'Redondeado (2 decimales)',
+    precise: 'Preciso (4 decimales)',
+    switchToRounded: 'Cambiar a redondeado (2 decimales)',
+    switchToPrecise: 'Cambiar a preciso (4 decimales)',
+  },
 
   seo: {
     homeDescription: 'Convierte divisas al instante con tipos de cambio en tiempo real. Conversor gratuito para USD, EUR, GBP, BRL, JPY y más de 20 monedas.',

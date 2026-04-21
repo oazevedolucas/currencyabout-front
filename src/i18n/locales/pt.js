@@ -62,6 +62,13 @@ export default {
   },
   emptyStateTitle: 'Digite um valor para começar',
   emptyStateHint: 'Digite um valor acima ou escolha um valor rápido para ver cotações ao vivo de 20+ moedas do mundo.',
+  precision: {
+    heading: 'Precisão dos números',
+    rounded: 'Arredondado (2 decimais)',
+    precise: 'Preciso (4 decimais)',
+    switchToRounded: 'Mudar para arredondado (2 decimais)',
+    switchToPrecise: 'Mudar para preciso (4 decimais)',
+  },
 
   seo: {
     homeDescription: 'Converta moedas instantaneamente com cotações em tempo real. Conversor gratuito para USD, EUR, GBP, BRL, JPY e mais de 20 moedas. Atualizado diariamente.',

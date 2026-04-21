@@ -62,6 +62,13 @@ export default {
   },
   emptyStateTitle: 'Betrag eingeben zum Starten',
   emptyStateHint: 'Geben Sie oben einen Wert ein oder wählen Sie einen Schnellbetrag, um Live-Kurse für 20+ Weltwährungen zu sehen.',
+  precision: {
+    heading: 'Zahlengenauigkeit',
+    rounded: 'Gerundet (2 Dezimalstellen)',
+    precise: 'Präzise (4 Dezimalstellen)',
+    switchToRounded: 'Zu gerundet wechseln (2 Dezimalstellen)',
+    switchToPrecise: 'Zu präzise wechseln (4 Dezimalstellen)',
+  },
 
   seo: {
     homeDescription: 'Rechnen Sie Währungen sofort mit Live-Wechselkursen um. Kostenloser Echtzeit-Umrechner für USD, EUR, GBP, BRL, JPY und 20+ Währungen.',
