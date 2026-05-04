@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { useI18n } from '../../i18n/I18nContext.jsx'
 import { LanguageSelector } from '../LanguageSelector/LanguageSelector.jsx'
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle.jsx'
+import { CookieConsent } from '../CookieConsent/CookieConsent.jsx'
 import { POPULAR_PAIRS, pairUrl } from '../../seo/seoContent.js'
 import './Layout.css'
 
@@ -102,6 +103,8 @@ export function Layout({ children }) {
           </div>
         </footer>
       </div>
+
+      <CookieConsent />
     </>
   )
 }

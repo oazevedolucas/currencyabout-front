@@ -91,15 +91,25 @@ export function PrivacyPage() {
       </section>
 
       <section className="legal-page__section">
-        <h2>4. Cookies</h2>
+        <h2>4. Cookies and Your Consent</h2>
         <p>The cookies that may be set on your device fall into these categories:</p>
         <ul>
           <li><strong>Strictly necessary</strong>: Cloudflare security cookies (e.g., <code>__cf_bm</code>).</li>
-          <li><strong>Advertising</strong>: Google and partners may set cookies (e.g., <code>IDE</code>, <code>NID</code>) for ad personalization and measurement.</li>
+          <li><strong>Advertising</strong>: Google and partners may set cookies (e.g., <code>IDE</code>, <code>NID</code>) for ad personalization and measurement — only after you accept them.</li>
         </ul>
         <p>
-          You can block or delete cookies in your browser settings. Doing so will not break the
-          converter, but may affect advertising relevance.
+          On your first visit you will see a <strong>cookie consent banner</strong> at the bottom
+          of the page. You can:
+        </p>
+        <ul>
+          <li><strong>Accept all</strong> — strictly-necessary plus advertising/measurement cookies.</li>
+          <li><strong>Reject non-essential</strong> — only the strictly-necessary cookies are used; advertising cookies are not set and personalised ads are disabled.</li>
+        </ul>
+        <p>
+          Your choice is stored locally in your browser. You can change it at any time by clearing
+          your browser data for this site, after which the banner will reappear. You can also
+          block or delete cookies in your browser settings — this will not break the converter,
+          but may affect advertising relevance.
         </p>
       </section>
 
