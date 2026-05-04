@@ -3,13 +3,14 @@ import { useParams, Link } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { SeoHead } from '../seo/SeoHead.jsx'
 import { BreadcrumbSchema, CurrencyPairSchema } from '../seo/StructuredData.jsx'
-import { getPairSeo, SITE_URL, pairUrl } from '../seo/seoContent.js'
+import { getPairSeo, SITE_URL, pairUrl, isIndexablePair } from '../seo/seoContent.js'
 import { getRate, CURRENCY_META } from '../constants/currencies.js'
 import { CurrencyInput } from '../components/CurrencyInput/CurrencyInput.jsx'
 import { CurrencyGrid } from '../components/CurrencyGrid/CurrencyGrid.jsx'
 import { CurrencyGridSkeleton } from '../components/CurrencyCard/CurrencyCardSkeleton.jsx'
 import { PopularPairs } from '../components/PopularPairs/PopularPairs.jsx'
 import { FAQ } from '../components/FAQ/FAQ.jsx'
+import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.jsx'
 import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
 import { getProfile } from '../content/currencyProfiles.js'
 
@@ -66,11 +67,12 @@ export function CurrencyPairPage() {
   const toName = t.currencies[toCode] || toMeta.name
   const rateStr = formatRateDisplay(rate)
   const seo = getPairSeo(fromCode, toCode, fromName, toName, rateStr, t)
+  const indexable = isIndexablePair(fromCode, toCode)
 
   if (converter.loading) {
     return (
       <div className="page">
-        <SeoHead title={seo.title} description={seo.description} path={pairUrl(fromCode, toCode)} />
+        <SeoHead title={seo.title} description={seo.description} path={pairUrl(fromCode, toCode)} noindex={!indexable} />
         <header className="header">
           <h1 className="header__title">
             <span>{fromMeta.flag}</span> {fromCode} to {toCode} <span>{toMeta.flag}</span>
@@ -118,12 +120,18 @@ export function CurrencyPairPage() {
 
   return (
     <div className="page">
-      <SeoHead title={seo.title} description={seo.description} path={pairUrl(fromCode, toCode)} />
+      <SeoHead title={seo.title} description={seo.description} path={pairUrl(fromCode, toCode)} noindex={!indexable} />
       <BreadcrumbSchema items={[
         { name: 'Home', url: SITE_URL },
         { name: `${fromCode} to ${toCode}`, url: `${SITE_URL}${pairUrl(fromCode, toCode)}` },
       ]} />
-      <CurrencyPairSchema from={fromMeta} to={toMeta} rate={rate} date={converter.rateDate} />
+      {indexable && <CurrencyPairSchema from={fromMeta} to={toMeta} rate={rate} date={converter.rateDate} />}
+
+      <Breadcrumbs items={[
+        { label: 'Home', to: '/' },
+        { label: 'Exchange Rates Today', to: '/exchange-rates-today' },
+        { label: `${fromCode} to ${toCode}` },
+      ]} />
 
       <header className="header">
         <span className="header__eyebrow">

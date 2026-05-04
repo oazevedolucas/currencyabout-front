@@ -31,6 +31,34 @@ export function pairUrl(from, to) {
   return `/${pairSlug(from, to)}`
 }
 
+// Curated set of pairs we treat as "high-value" for indexing.
+// The converter still works for any supported pair, but only these get
+// indexed by search engines — everything else is rendered with noindex.
+// Logic:
+//   1. All POPULAR_PAIRS plus their reverses.
+//   2. All major-major combinations (USD/EUR/GBP/JPY/CHF/CAD/AUD/CNY).
+// This keeps Google's index focused on pages with depth, instead of 400+
+// auto-generated thin variants that trigger the "low-value content" flag.
+const MAJORS = ['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD', 'CNY']
+
+const indexedSet = new Set()
+
+for (const { from, to } of POPULAR_PAIRS) {
+  indexedSet.add(`${from}-${to}`)
+  indexedSet.add(`${to}-${from}`)
+}
+
+for (const a of MAJORS) {
+  for (const b of MAJORS) {
+    if (a !== b) indexedSet.add(`${a}-${b}`)
+  }
+}
+
+export function isIndexablePair(fromCode, toCode) {
+  if (!fromCode || !toCode) return false
+  return indexedSet.has(`${fromCode.toUpperCase()}-${toCode.toUpperCase()}`)
+}
+
 export function getHomeSeo(t) {
   return {
     title: `About Currency - ${t.subtitle}`,

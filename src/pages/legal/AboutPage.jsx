@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { SeoHead } from '../../seo/SeoHead.jsx'
 import { BreadcrumbSchema } from '../../seo/StructuredData.jsx'
 import { SITE_URL } from '../../seo/seoContent.js'
+import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.jsx'
 import './legal.css'
 
 export function AboutPage() {
@@ -15,6 +16,11 @@ export function AboutPage() {
       <BreadcrumbSchema items={[
         { name: 'Home', url: SITE_URL },
         { name: 'About', url: `${SITE_URL}/about` },
+      ]} />
+
+      <Breadcrumbs items={[
+        { label: 'Home', to: '/' },
+        { label: 'About' },
       ]} />
 
       <div className="legal-page__meta">Last updated: April 20, 2026</div>
@@ -47,7 +53,9 @@ export function AboutPage() {
         <p>
           We pull daily reference rates from a public exchange-rate API that aggregates data from
           major financial institutions and central-bank publications. Rates are cached in your
-          browser for the day for performance, and refreshed automatically each day.
+          browser for the day for performance, and refreshed automatically each day. For a full
+          walk-through of our data pipeline, refresh cadence, and known limitations, see our
+          dedicated <Link to="/methodology">methodology page</Link>.
         </p>
         <div className="legal-page__callout">
           <strong>Important:</strong> The rates shown on this site are <em>mid-market reference rates</em> —

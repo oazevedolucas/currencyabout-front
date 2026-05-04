@@ -3,6 +3,7 @@ import { SeoHead } from '../../seo/SeoHead.jsx'
 import { BreadcrumbSchema, ArticleSchema } from '../../seo/StructuredData.jsx'
 import { SITE_URL } from '../../seo/seoContent.js'
 import { GUIDES, getGuide } from '../../content/guides.js'
+import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.jsx'
 import './guides.css'
 
 function renderBlock(block, i) {
@@ -61,11 +62,11 @@ export function GuidePage() {
         dateModified={guide.updated}
       />
 
-      <nav className="guide-article__breadcrumb" aria-label="Breadcrumb">
-        <Link to="/guides">Guides</Link>
-        <span aria-hidden="true"> / </span>
-        <span>{guide.category}</span>
-      </nav>
+      <Breadcrumbs items={[
+        { label: 'Home', to: '/' },
+        { label: 'Guides', to: '/guides' },
+        { label: guide.title },
+      ]} />
 
       <header className="guide-article__header">
         <span className="guide-article__category">{guide.category}</span>

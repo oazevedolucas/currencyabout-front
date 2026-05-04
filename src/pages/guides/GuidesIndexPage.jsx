@@ -3,6 +3,7 @@ import { SeoHead } from '../../seo/SeoHead.jsx'
 import { BreadcrumbSchema } from '../../seo/StructuredData.jsx'
 import { SITE_URL } from '../../seo/seoContent.js'
 import { GUIDES } from '../../content/guides.js'
+import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.jsx'
 import './guides.css'
 
 export function GuidesIndexPage() {
@@ -16,6 +17,11 @@ export function GuidesIndexPage() {
       <BreadcrumbSchema items={[
         { name: 'Home', url: SITE_URL },
         { name: 'Guides', url: `${SITE_URL}/guides` },
+      ]} />
+
+      <Breadcrumbs items={[
+        { label: 'Home', to: '/' },
+        { label: 'Guides' },
       ]} />
 
       <header className="guides-index__header">

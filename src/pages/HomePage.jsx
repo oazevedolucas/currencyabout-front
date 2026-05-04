@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { SeoHead } from '../seo/SeoHead.jsx'
 import { BreadcrumbSchema } from '../seo/StructuredData.jsx'
@@ -208,6 +209,82 @@ export function HomePage() {
       )}
 
       <PopularPairs />
+
+      <section className="seo-content home-editorial" aria-labelledby="home-editorial-heading">
+        <h2 id="home-editorial-heading">A free, transparent currency converter — explained</h2>
+        <p>
+          About Currency is an independent online tool that converts amounts between {' '}
+          <strong>21 of the world's most traded currencies</strong> using daily-refreshed
+          mid-market reference rates. No sign-up, no paywall, no obscure pricing — every figure
+          on the site is the same kind of rate quoted by central banks and major financial
+          publications. This page exists so you understand exactly what you are looking at
+          before you act on it.
+        </p>
+
+        <h3>What "mid-market rate" means (and why it matters)</h3>
+        <p>
+          The rates you see on this site are <strong>mid-market rates</strong> — the midpoint
+          between the global interbank buy and sell prices for a currency. This is the cleanest
+          single number to publish, but no consumer actually transacts at it. Every bank, card
+          network, and money-transfer service adds a margin on top, typically between 0.3% and
+          5%. Knowing the mid-market rate is how you tell whether your provider is competitive
+          or quietly overcharging you. For a deeper walk-through, read our guide on
+          {' '}<Link to="/guides/how-exchange-rates-work">how exchange rates work</Link>.
+        </p>
+
+        <h3>How we source and refresh the data</h3>
+        <p>
+          Rates are pulled from a public exchange-rate data partner that aggregates feeds from
+          major commercial banks and central-bank publications. We refresh once per calendar day
+          and cache the result in your browser so subsequent conversions during the same day are
+          instant — even on slow connections. For a complete walk-through of our data pipeline
+          and known caveats, see the <Link to="/methodology">methodology page</Link>.
+        </p>
+
+        <h3>Who this site is built for</h3>
+        <ul>
+          <li><strong>Travellers</strong> budgeting a trip, comparing prices on the ground, or working out hotel and meal costs in a familiar currency.</li>
+          <li><strong>Online shoppers</strong> checking what a foreign-currency price will cost in their home currency before checkout.</li>
+          <li><strong>Freelancers and contractors</strong> invoicing clients abroad, or estimating what an inbound payment will be worth.</li>
+          <li><strong>Families sending remittances</strong> who want to know the mid-market rate before accepting a quote from a bank or transfer app.</li>
+          <li><strong>Students and curious readers</strong> who want a fast way to understand how the cost of imported goods, fuel, or international tuition shifts over time.</li>
+        </ul>
+
+        <h3>What we do not do</h3>
+        <p>
+          About Currency is not a trading platform. We do not stream live tick-by-tick prices,
+          execute orders, or quote the rates a specific bank or card will give you. We do not
+          recommend specific banks, brokers, or payment providers in exchange for compensation.
+          We are not a financial advisor — for material decisions, always confirm directly with
+          your provider and, where relevant, a licensed professional.
+        </p>
+
+        <h3>How to use this converter well</h3>
+        <ol>
+          <li>Pick the currency you are converting <em>from</em> and enter an amount above.</li>
+          <li>Read off the mid-market value in any of the 20 other currencies displayed in the grid.</li>
+          <li>Compare that figure against the rate your bank, card, or remittance app is offering.</li>
+          <li>If the gap is wider than 1.5%–2%, look at a competing provider — you can almost always do better, especially on transfers above a few hundred dollars.</li>
+        </ol>
+
+        <h3>Editorial standards</h3>
+        <p>
+          Every guide, currency profile, and FAQ on this site is written and reviewed by humans
+          with backgrounds in financial technology and consumer payments — never by automated
+          summarisation of other sources. Articles are dated and re-reviewed at least annually.
+          We treat corrections as a courtesy to readers, not a reputational threat: if you spot
+          an error, please <Link to="/contact">tell us</Link>.
+        </p>
+
+        <h3>Continue reading</h3>
+        <ul>
+          <li><Link to="/guides/how-exchange-rates-work">How exchange rates work — a plain-English guide</Link></li>
+          <li><Link to="/guides/sending-money-abroad">How to send money abroad without overpaying</Link></li>
+          <li><Link to="/guides/best-time-to-exchange-currency">When is the best time to exchange currency?</Link></li>
+          <li><Link to="/guides/major-world-currencies">A guide to the world's major currencies</Link></li>
+          <li><Link to="/methodology">Our methodology — sources, refresh cadence, and known limits</Link></li>
+        </ul>
+      </section>
 
       <FAQ questions={faqQuestions} />
     </div>

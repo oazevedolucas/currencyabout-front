@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { SeoHead } from '../../seo/SeoHead.jsx'
 import { BreadcrumbSchema } from '../../seo/StructuredData.jsx'
 import { SITE_URL } from '../../seo/seoContent.js'
+import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.jsx'
 import './legal.css'
 
 const CONTACT_EMAIL = 'contact@currencyabout.com'
@@ -28,6 +29,11 @@ export function ContactPage() {
       <BreadcrumbSchema items={[
         { name: 'Home', url: SITE_URL },
         { name: 'Contact', url: `${SITE_URL}/contact` },
+      ]} />
+
+      <Breadcrumbs items={[
+        { label: 'Home', to: '/' },
+        { label: 'Contact' },
       ]} />
 
       <div className="legal-page__meta">Last updated: April 20, 2026</div>

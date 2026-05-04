@@ -7,6 +7,7 @@ import { AboutPage } from './pages/legal/AboutPage.jsx'
 import { PrivacyPage } from './pages/legal/PrivacyPage.jsx'
 import { TermsPage } from './pages/legal/TermsPage.jsx'
 import { ContactPage } from './pages/legal/ContactPage.jsx'
+import { MethodologyPage } from './pages/legal/MethodologyPage.jsx'
 import { GuidesIndexPage } from './pages/guides/GuidesIndexPage.jsx'
 import { GuidePage } from './pages/guides/GuidePage.jsx'
 import './App.css'
@@ -24,6 +25,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/methodology" element={<MethodologyPage />} />
           <Route path="/guides" element={<GuidesIndexPage />} />
           <Route path="/guides/:slug" element={<GuidePage />} />
           <Route path="/:pair" element={<CurrencyPairPage />} />
