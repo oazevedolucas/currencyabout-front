@@ -4,7 +4,28 @@ import { BreadcrumbSchema, ArticleSchema } from '../../seo/StructuredData.jsx'
 import { SITE_URL } from '../../seo/seoContent.js'
 import { GUIDES, getGuide } from '../../content/guides.js'
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.jsx'
+import { AdSlot } from '../../components/AdSlot/AdSlot.jsx'
+import { AD_SLOTS } from '../../constants/adsense.js'
 import './guides.css'
+
+function renderInline(child, j) {
+  if (typeof child === 'string') return child
+  if (!child) return null
+  if (child.to) {
+    return <Link key={j} to={child.to}>{child.text}</Link>
+  }
+  if (child.href) {
+    return (
+      <a key={j} href={child.href} target="_blank" rel="noopener noreferrer">
+        {child.text}
+      </a>
+    )
+  }
+  if (child.strong) {
+    return <strong key={j}>{child.strong}</strong>
+  }
+  return null
+}
 
 function renderBlock(block, i) {
   switch (block.type) {
@@ -15,15 +36,24 @@ function renderBlock(block, i) {
     case 'h3':
       return <h3 key={i}>{block.text}</h3>
     case 'p':
+      if (block.children) {
+        return <p key={i}>{block.children.map(renderInline)}</p>
+      }
       return <p key={i}>{block.text}</p>
     case 'list':
       return (
         <ul key={i}>
-          {block.items.map((it, j) => <li key={j}>{it}</li>)}
+          {block.items.map((it, j) => (
+            <li key={j}>
+              {Array.isArray(it) ? it.map(renderInline) : it}
+            </li>
+          ))}
         </ul>
       )
     case 'callout':
       return <div key={i} className="guide-article__callout">{block.text}</div>
+    case 'disclaimer':
+      return <p key={i} className="guide-article__disclaimer">{block.text}</p>
     default:
       return null
   }
@@ -45,6 +75,9 @@ export function GuidePage() {
 
   const related = GUIDES.filter((g) => g.slug !== guide.slug).slice(0, 3)
   const url = `${SITE_URL}/guides/${guide.slug}`
+  const midIndex = Math.floor(guide.body.length / 2)
+  const firstHalf = guide.body.slice(0, midIndex)
+  const secondHalf = guide.body.slice(midIndex)
 
   return (
     <article className="guide-article">
@@ -81,8 +114,12 @@ export function GuidePage() {
       </header>
 
       <div className="guide-article__body">
-        {guide.body.map(renderBlock)}
+        {firstHalf.map(renderBlock)}
+        <AdSlot slotId={AD_SLOTS.guideMid} />
+        {secondHalf.map((b, i) => renderBlock(b, midIndex + i))}
       </div>
+
+      <AdSlot slotId={AD_SLOTS.guideEnd} />
 
       <footer className="guide-article__footer">
         <h2 className="guide-article__related-title">Keep reading</h2>

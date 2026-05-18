@@ -10,6 +10,7 @@ import { ContactPage } from './pages/legal/ContactPage.jsx'
 import { MethodologyPage } from './pages/legal/MethodologyPage.jsx'
 import { GuidesIndexPage } from './pages/guides/GuidesIndexPage.jsx'
 import { GuidePage } from './pages/guides/GuidePage.jsx'
+import { NotFoundPage } from './pages/NotFoundPage.jsx'
 import './App.css'
 import './pages/pages.css'
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/guides" element={<GuidesIndexPage />} />
           <Route path="/guides/:slug" element={<GuidePage />} />
           <Route path="/:pair" element={<CurrencyPairPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

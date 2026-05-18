@@ -11,8 +11,12 @@ import { CurrencyGridSkeleton } from '../components/CurrencyCard/CurrencyCardSke
 import { PopularPairs } from '../components/PopularPairs/PopularPairs.jsx'
 import { FAQ } from '../components/FAQ/FAQ.jsx'
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.jsx'
+import { RateDisclaimer } from '../components/RateDisclaimer/RateDisclaimer.jsx'
+import { AdSlot } from '../components/AdSlot/AdSlot.jsx'
+import { AD_SLOTS } from '../constants/adsense.js'
 import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
 import { getProfile } from '../content/currencyProfiles.js'
+import { NotFoundPage } from './NotFoundPage.jsx'
 
 function formatRateDisplay(rate) {
   if (rate >= 100) return rate.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -47,20 +51,7 @@ export function CurrencyPairPage() {
   }, [converter.localizedCurrencies, fromCode, toCode])
 
   if (!fromMeta || !toMeta) {
-    return (
-      <div className="page">
-        <SeoHead
-          title="Currency pair not found | About Currency"
-          description="The requested currency pair was not found."
-          path={`/${pair}`}
-          noindex
-        />
-        <h1 className="header__title">Currency pair not found</h1>
-        <p className="header__subtitle">
-          <Link to="/">Go to homepage</Link>
-        </p>
-      </div>
-    )
+    return <NotFoundPage />
   }
 
   const fromName = t.currencies[fromCode] || fromMeta.name
@@ -208,6 +199,8 @@ export function CurrencyPairPage() {
         </div>
       </section>
 
+      <AdSlot slotId={AD_SLOTS.pairBelowConversion} />
+
       <div className="divider" />
 
       {/* Rich editorial content */}
@@ -316,6 +309,10 @@ export function CurrencyPairPage() {
       <PopularPairs exclude={{ from: fromCode, to: toCode }} />
 
       <FAQ questions={faqQuestions} />
+
+      <AdSlot slotId={AD_SLOTS.pairEnd} />
+
+      <RateDisclaimer />
     </div>
   )
 }

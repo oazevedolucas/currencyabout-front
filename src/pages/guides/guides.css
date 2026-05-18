@@ -194,6 +194,24 @@
   line-height: 1.6;
 }
 
+.guide-article__disclaimer {
+  margin-top: 20px;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.guide-article__body a {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.guide-article__body a:hover {
+  color: var(--color-primary);
+}
+
 .guide-article__footer {
   margin-top: 32px;
   padding-top: 32px;

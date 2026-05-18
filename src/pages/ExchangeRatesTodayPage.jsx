@@ -9,6 +9,7 @@ import { useExchangeRates } from '../hooks/useExchangeRates.js'
 import { PopularPairs } from '../components/PopularPairs/PopularPairs.jsx'
 import { FAQ } from '../components/FAQ/FAQ.jsx'
 import { Breadcrumbs } from '../components/Breadcrumbs/Breadcrumbs.jsx'
+import { RateDisclaimer } from '../components/RateDisclaimer/RateDisclaimer.jsx'
 
 function formatRate(rate) {
   if (rate >= 100) return rate.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -188,6 +189,8 @@ export function ExchangeRatesTodayPage() {
       </section>
 
       <FAQ questions={faqQuestions} />
+
+      <RateDisclaimer />
     </div>
   )
 }

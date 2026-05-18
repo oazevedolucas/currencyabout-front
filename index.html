@@ -45,9 +45,11 @@
     <link rel="manifest" href="/manifest.json" />
 
     <!--
-      Google AdSense — temporarily removed during re-review.
-      Re-add after approval:
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3917556333305409" crossorigin="anonymous"></script>
+      Google AdSense loader is now consent-gated and injected dynamically by
+      src/hooks/useAdSenseLoader.js (mounted in Layout). The script is only
+      added to <head> after a visitor accepts cookies via CookieConsent, and
+      no <AdSlot /> renders without consent. Do not re-add a static <script>
+      tag here — it would defeat the consent gate.
     -->
 
     <!-- Performance: Preconnect & Preload -->
@@ -146,11 +148,21 @@
         <h2>Guides and Articles</h2>
         <ul>
           <li><a href="/guides/how-exchange-rates-work">How Exchange Rates Work</a></li>
+          <li><a href="/guides/how-exchange-rates-are-determined">How Exchange Rates Are Determined</a></li>
           <li><a href="/guides/understanding-us-dollar">Understanding the US Dollar</a></li>
           <li><a href="/guides/understanding-euro">Understanding the Euro</a></li>
           <li><a href="/guides/sending-money-abroad">How to Send Money Abroad</a></li>
           <li><a href="/guides/best-time-to-exchange-currency">Best Time to Exchange Currency</a></li>
           <li><a href="/guides/major-world-currencies">A Guide to Major World Currencies</a></li>
+          <li><a href="/guides/currency-strength-explained">Currency Strength Explained</a></li>
+          <li><a href="/guides/floating-vs-fixed-exchange-rates">Floating vs Fixed Exchange Rate Systems</a></li>
+          <li><a href="/guides/top-factors-that-move-currency-markets">Top Factors That Move Currency Markets</a></li>
+          <li><a href="/guides/currency-conversion-fees-compared">Currency Conversion Fees Compared</a></li>
+          <li><a href="/guides/bid-ask-spread-in-forex">Understanding Bid-Ask Spread in Forex</a></li>
+          <li><a href="/guides/how-central-banks-intervene">How Central Banks Intervene in Currency Markets</a></li>
+          <li><a href="/guides/hedge-basics-individuals-small-business">Hedge Basics for Individuals and Small Businesses</a></li>
+          <li><a href="/guides/spot-vs-forward-vs-swap">Spot vs Forward vs Swap Explained</a></li>
+          <li><a href="/guides/currency-volatility-explained">Currency Volatility Explained</a></li>
         </ul>
         <h2>About the Site</h2>
         <p>About Currency is a free, fast currency converter that fetches live exchange rates daily. Available in English, Portuguese, Spanish, French, German, Chinese, and Japanese. No sign-up required.</p>

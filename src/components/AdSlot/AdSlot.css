@@ -1,0 +1,20 @@
+.adslot {
+  width: 100%;
+  max-width: 760px;
+  margin: 24px auto;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adslot__ins {
+  width: 100%;
+  min-height: 90px;
+}
+
+@media (max-width: 640px) {
+  .adslot {
+    margin: 20px auto;
+  }
+}

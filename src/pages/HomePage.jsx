@@ -14,6 +14,9 @@ import { SortSelect } from '../components/SortSelect/SortSelect.jsx'
 import { PrecisionToggle } from '../components/PrecisionToggle/PrecisionToggle.jsx'
 import { FeaturedResult } from '../components/FeaturedResult/FeaturedResult.jsx'
 import { FAQ } from '../components/FAQ/FAQ.jsx'
+import { RateDisclaimer } from '../components/RateDisclaimer/RateDisclaimer.jsx'
+import { AdSlot } from '../components/AdSlot/AdSlot.jsx'
+import { AD_SLOTS } from '../constants/adsense.js'
 import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
 import { getRate } from '../constants/currencies.js'
 
@@ -286,7 +289,11 @@ export function HomePage() {
         </ul>
       </section>
 
+      <AdSlot slotId={AD_SLOTS.homeEditorial} />
+
       <FAQ questions={faqQuestions} />
+
+      <RateDisclaimer />
     </div>
   )
 }
