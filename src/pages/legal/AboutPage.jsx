@@ -3,6 +3,7 @@ import { SeoHead } from '../../seo/SeoHead.jsx'
 import { BreadcrumbSchema } from '../../seo/StructuredData.jsx'
 import { SITE_URL } from '../../seo/seoContent.js'
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.jsx'
+import { AUTHORS } from '../../content/authors.js'
 import './legal.css'
 
 export function AboutPage() {
@@ -92,16 +93,18 @@ export function AboutPage() {
         </ol>
       </section>
 
-      <section className="legal-page__section">
-        <h2>Who We Are</h2>
+      <section className="legal-page__section" id="author">
+        <h2>About the author</h2>
+        <p className="legal-page__byline-lead">
+          <strong>{AUTHORS['lucas-azevedo-souza'].name}</strong> — {AUTHORS['lucas-azevedo-souza'].jobTitle}
+        </p>
+        <p>{AUTHORS['lucas-azevedo-souza'].bio}</p>
         <p>
-          About Currency is an independent project. It is not affiliated with any bank, broker,
-          money-transfer service, or government agency. The site is maintained by a small team of
-          web engineers and writers who care about useful, honest financial tools.
+          {AUTHORS['lucas-azevedo-souza'].description}{' '}
+          <a href={AUTHORS['lucas-azevedo-souza'].external.url} target="_blank" rel="noopener noreferrer">{AUTHORS['lucas-azevedo-souza'].external.text}</a>.
         </p>
         <p>
-          If you want to get in touch — press inquiries, corrections, partnership ideas, or
-          feedback — please visit our <Link to="/contact">contact page</Link>.
+          Questions, corrections, or press inquiries? Visit the <Link to="/contact">contact page</Link>.
         </p>
       </section>
 
