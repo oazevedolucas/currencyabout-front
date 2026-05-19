@@ -8,6 +8,8 @@ export const GUIDES = [
     description: 'Exchange rates shape the price of almost everything you buy from abroad. Here is how they are set, why they move, and what the numbers actually mean.',
     readingMinutes: 7,
     updated: '2026-04-20',
+    // published: MUST be <= updated. If unknown, use the updated value as floor (D-15).
+    published: '2026-04-20',
     category: 'Fundamentals',
     tags: ['basics', 'forex', 'education'],
     body: [
@@ -46,6 +48,7 @@ export const GUIDES = [
     description: 'The US dollar anchors more than 60% of global reserves and is on one side of nearly 90% of all foreign-exchange trades. Here is why.',
     readingMinutes: 8,
     updated: '2026-04-20',
+    published: '2026-04-20',
     category: 'Currency Guides',
     tags: ['usd', 'dollar', 'reserve-currency'],
     body: [
@@ -89,6 +92,7 @@ export const GUIDES = [
     description: 'The euro is the second most-traded currency in the world and the official currency of 20 EU member states. Here is how it works and why it matters.',
     readingMinutes: 7,
     updated: '2026-04-20',
+    published: '2026-04-20',
     category: 'Currency Guides',
     tags: ['eur', 'euro', 'europe'],
     body: [
@@ -128,6 +132,7 @@ export const GUIDES = [
     description: 'Banks, remittance services, fintech apps, cards — the options have never been wider or the price differences larger. Here is how to choose.',
     readingMinutes: 9,
     updated: '2026-04-20',
+    published: '2026-04-20',
     category: 'How-to',
     tags: ['remittance', 'transfer', 'fees'],
     body: [
@@ -171,6 +176,7 @@ export const GUIDES = [
     description: 'Timing the market is famously hard. Here is what works, what does not, and how to think about when to convert.',
     readingMinutes: 6,
     updated: '2026-04-20',
+    published: '2026-04-20',
     category: 'Strategy',
     tags: ['timing', 'strategy', 'forex'],
     body: [
@@ -203,6 +209,7 @@ export const GUIDES = [
     description: 'USD, EUR, JPY, GBP, CHF, CAD, AUD, CNY — the eight currencies that make up most of the world\'s foreign-exchange volume.',
     readingMinutes: 8,
     updated: '2026-04-20',
+    published: '2026-04-20',
     category: 'Reference',
     tags: ['currencies', 'reference', 'fx-majors'],
     body: [
@@ -254,6 +261,7 @@ export const GUIDES = [
     description: 'Beyond "supply and demand": a walk through the actual machinery that produces the exchange rates you see quoted every day, from the interbank market down to the rate on your card statement.',
     readingMinutes: 10,
     updated: '2026-05-15',
+    published: '2026-05-15',
     category: 'Fundamentals',
     tags: ['fundamentals', 'forex', 'markets'],
     body: [
@@ -326,6 +334,7 @@ export const GUIDES = [
     description: 'When a headline says a currency is strong or weak, what is it actually measured against? Here is how analysts define currency strength, how the BIS and major banks measure it, and what those numbers mean for travel, transfers, and prices.',
     readingMinutes: 9,
     updated: '2026-05-18',
+    published: '2026-05-18',
     category: 'Fundamentals',
     tags: ['strength', 'indices', 'fundamentals'],
     body: [
@@ -410,6 +419,7 @@ export const GUIDES = [
     description: 'Some currencies float freely against the dollar; others are pegged or managed inside narrow bands. Here is how each system works, what it costs the country running it, and what it means for your conversions.',
     readingMinutes: 9,
     updated: '2026-05-18',
+    published: '2026-05-18',
     category: 'Fundamentals',
     tags: ['systems', 'monetary-policy', 'fundamentals'],
     body: [
@@ -476,6 +486,7 @@ export const GUIDES = [
     description: 'Interest rates, inflation, politics, capital flows. Here are the forces that actually move major currency pairs, ranked by how reliably each one shows up in real price action.',
     readingMinutes: 8,
     updated: '2026-05-18',
+    published: '2026-05-18',
     category: 'Markets',
     tags: ['drivers', 'markets', 'macro'],
     body: [
@@ -548,6 +559,7 @@ export const GUIDES = [
     description: 'Banks, cards, fintech apps, kiosks, and brokers all charge in different ways. Here is how the typical fee structures break down, and which channel is cheapest for which use case.',
     readingMinutes: 9,
     updated: '2026-05-18',
+    published: '2026-05-18',
     category: 'How-to',
     tags: ['fees', 'comparison', 'how-to'],
     body: [
@@ -632,6 +644,7 @@ export const GUIDES = [
     description: 'The gap between what a market will pay you for a currency and what it will charge you to buy it back is the spread. Here is what determines it, where it shows up in your conversion cost, and how to use it.',
     readingMinutes: 7,
     updated: '2026-05-18',
+    published: '2026-05-18',
     category: 'Fundamentals',
     tags: ['spread', 'mechanics', 'fundamentals'],
     body: [
@@ -696,6 +709,7 @@ export const GUIDES = [
     description: 'Central banks do not just set interest rates. They can also buy and sell currency directly to push the market. Here is how it works, why some banks do it more than others, and what readers should watch for.',
     readingMinutes: 9,
     updated: '2026-05-18',
+    published: '2026-05-18',
     category: 'Markets',
     tags: ['intervention', 'central-banks', 'markets'],
     body: [
@@ -761,6 +775,7 @@ export const GUIDES = [
     description: 'You do not need to be a trader to hedge currency risk. For individuals and small businesses with foreign-currency income or expenses, a handful of simple techniques cover most of the practical risk.',
     readingMinutes: 9,
     updated: '2026-05-18',
+    published: '2026-05-18',
     category: 'How-to',
     tags: ['hedging', 'risk', 'how-to'],
     body: [
@@ -839,6 +854,7 @@ export const GUIDES = [
     description: 'Three contract types account for almost all currency trading. Here is the difference between spot, forward, and swap deals, when each one applies, and what the distinction means for a non-trader.',
     readingMinutes: 8,
     updated: '2026-05-18',
+    published: '2026-05-18',
     category: 'Fundamentals',
     tags: ['contracts', 'spot', 'forward', 'swap'],
     body: [
@@ -904,6 +920,7 @@ export const GUIDES = [
     description: 'The Singapore dollar barely moves on most days. The Brazilian real can shift 2% in an afternoon. The difference is structural, and it has direct implications for how you should plan a conversion.',
     readingMinutes: 9,
     updated: '2026-05-18',
+    published: '2026-05-18',
     category: 'Fundamentals',
     tags: ['volatility', 'emerging-markets', 'fundamentals'],
     body: [
