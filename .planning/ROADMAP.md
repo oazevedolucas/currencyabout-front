@@ -35,12 +35,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. JSON-LD on guides emits `author` (Person), `datePublished`, `dateModified`, and `publisher`; home and indexable pair pages emit `FinancialProduct` or `CurrencyConversionService`
   5. Every indexable pair page (per `isIndexablePair()`) carries ≥150 words of pair-specific editorial; thin pairs remain `noindex`
 
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 
 Plans:
 **Wave 1**
 
-- [ ] 01-01: Build author data model + components — `src/content/authors.js`, `<BylineMeta>`, author hub destination (extension of `/about`)
+- [x] 01-01: Build author data model + components — `src/content/authors.js`, `<BylineMeta>`, author hub destination (extension of `/about`)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
