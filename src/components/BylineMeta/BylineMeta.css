@@ -1,0 +1,41 @@
+.byline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.byline-meta__link {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.byline-meta__link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.byline-meta__link:focus-visible {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.byline-meta__sep {
+  color: var(--color-text-muted);
+}
+
+.byline-meta__reviewed {
+  color: var(--color-text-muted);
+}
+
+.byline-meta__reading {
+  color: var(--color-text-muted);
+}
