@@ -97,6 +97,10 @@ export default {
     ],
   },
 
+  bylineBy: 'Por',
+  bylineLastReviewed: 'Última revisão:',
+  bylineMinRead: 'min de leitura',
+
   currencies: {
     BRL: 'Real Brasileiro',
     USD: 'Dólar Americano',

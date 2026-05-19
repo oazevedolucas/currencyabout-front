@@ -97,6 +97,10 @@ export default {
     ],
   },
 
+  bylineBy: '著者',
+  bylineLastReviewed: '最終確認：',
+  bylineMinRead: '分で読了',
+
   currencies: {
     BRL: 'ブラジルレアル',
     USD: '米ドル',

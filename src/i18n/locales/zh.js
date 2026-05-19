@@ -97,6 +97,10 @@ export default {
     ],
   },
 
+  bylineBy: '作者',
+  bylineLastReviewed: '最近审核：',
+  bylineMinRead: '分钟阅读',
+
   currencies: {
     BRL: '巴西雷亚尔',
     USD: '美元',
