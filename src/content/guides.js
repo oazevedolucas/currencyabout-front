@@ -10,6 +10,7 @@ export const GUIDES = [
     updated: '2026-04-20',
     // published: MUST be <= updated. If unknown, use the updated value as floor (D-15).
     published: '2026-04-20',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Fundamentals',
     tags: ['basics', 'forex', 'education'],
     body: [
@@ -49,6 +50,7 @@ export const GUIDES = [
     readingMinutes: 8,
     updated: '2026-04-20',
     published: '2026-04-20',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Currency Guides',
     tags: ['usd', 'dollar', 'reserve-currency'],
     body: [
@@ -93,6 +95,7 @@ export const GUIDES = [
     readingMinutes: 7,
     updated: '2026-04-20',
     published: '2026-04-20',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Currency Guides',
     tags: ['eur', 'euro', 'europe'],
     body: [
@@ -133,6 +136,7 @@ export const GUIDES = [
     readingMinutes: 9,
     updated: '2026-04-20',
     published: '2026-04-20',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'How-to',
     tags: ['remittance', 'transfer', 'fees'],
     body: [
@@ -177,6 +181,7 @@ export const GUIDES = [
     readingMinutes: 6,
     updated: '2026-04-20',
     published: '2026-04-20',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Strategy',
     tags: ['timing', 'strategy', 'forex'],
     body: [
@@ -210,6 +215,7 @@ export const GUIDES = [
     readingMinutes: 8,
     updated: '2026-04-20',
     published: '2026-04-20',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Reference',
     tags: ['currencies', 'reference', 'fx-majors'],
     body: [
@@ -262,6 +268,7 @@ export const GUIDES = [
     readingMinutes: 10,
     updated: '2026-05-15',
     published: '2026-05-15',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Fundamentals',
     tags: ['fundamentals', 'forex', 'markets'],
     body: [
@@ -335,6 +342,7 @@ export const GUIDES = [
     readingMinutes: 9,
     updated: '2026-05-18',
     published: '2026-05-18',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Fundamentals',
     tags: ['strength', 'indices', 'fundamentals'],
     body: [
@@ -420,6 +428,7 @@ export const GUIDES = [
     readingMinutes: 9,
     updated: '2026-05-18',
     published: '2026-05-18',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Fundamentals',
     tags: ['systems', 'monetary-policy', 'fundamentals'],
     body: [
@@ -487,6 +496,7 @@ export const GUIDES = [
     readingMinutes: 8,
     updated: '2026-05-18',
     published: '2026-05-18',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Markets',
     tags: ['drivers', 'markets', 'macro'],
     body: [
@@ -560,6 +570,7 @@ export const GUIDES = [
     readingMinutes: 9,
     updated: '2026-05-18',
     published: '2026-05-18',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'How-to',
     tags: ['fees', 'comparison', 'how-to'],
     body: [
@@ -645,6 +656,7 @@ export const GUIDES = [
     readingMinutes: 7,
     updated: '2026-05-18',
     published: '2026-05-18',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Fundamentals',
     tags: ['spread', 'mechanics', 'fundamentals'],
     body: [
@@ -710,6 +722,7 @@ export const GUIDES = [
     readingMinutes: 9,
     updated: '2026-05-18',
     published: '2026-05-18',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Markets',
     tags: ['intervention', 'central-banks', 'markets'],
     body: [
@@ -776,6 +789,7 @@ export const GUIDES = [
     readingMinutes: 9,
     updated: '2026-05-18',
     published: '2026-05-18',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'How-to',
     tags: ['hedging', 'risk', 'how-to'],
     body: [
@@ -855,6 +869,7 @@ export const GUIDES = [
     readingMinutes: 8,
     updated: '2026-05-18',
     published: '2026-05-18',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Fundamentals',
     tags: ['contracts', 'spot', 'forward', 'swap'],
     body: [
@@ -921,6 +936,7 @@ export const GUIDES = [
     readingMinutes: 9,
     updated: '2026-05-18',
     published: '2026-05-18',
+    authorSlug: 'lucas-azevedo-souza',
     category: 'Fundamentals',
     tags: ['volatility', 'emerging-markets', 'fundamentals'],
     body: [
