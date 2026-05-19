@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { SeoHead } from '../seo/SeoHead.jsx'
-import { BreadcrumbSchema, CurrencyPairSchema } from '../seo/StructuredData.jsx'
+import { BreadcrumbSchema, CurrencyPairSchema, CurrencyConversionServiceSchema } from '../seo/StructuredData.jsx'
 import { getPairSeo, SITE_URL, pairUrl, isIndexablePair } from '../seo/seoContent.js'
 import { getRate, CURRENCY_META } from '../constants/currencies.js'
 import { CurrencyInput } from '../components/CurrencyInput/CurrencyInput.jsx'
@@ -117,6 +117,7 @@ export function CurrencyPairPage() {
         { name: `${fromCode} to ${toCode}`, url: `${SITE_URL}${pairUrl(fromCode, toCode)}` },
       ]} />
       {indexable && <CurrencyPairSchema from={fromMeta} to={toMeta} rate={rate} date={converter.rateDate} />}
+      {indexable && <CurrencyConversionServiceSchema fromCode={fromCode} toCode={toCode} fromName={fromName} toName={toName} />}
 
       <Breadcrumbs items={[
         { label: 'Home', to: '/' },
