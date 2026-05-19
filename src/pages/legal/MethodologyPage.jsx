@@ -184,7 +184,22 @@ export function MethodologyPage() {
       </section>
 
       <section className="legal-page__section">
-        <h2>8. Known limitations</h2>
+        <h2>8. Use of AI tools in content creation</h2>
+        <p>
+          Some of the guides and explanatory copy on this site are first drafted with the
+          assistance of large language models, then reviewed and edited line by line before
+          publication. The review step is where every factual claim, every cited figure, and
+          every example is checked against primary sources or against the live data feed
+          described in section 2. The named editor, Lucas Azevedo Souza, is responsible for
+          the final published version of each page and for any error that survives review.
+          AI tools are not used to generate exchange rates or any numbers shown on the site:
+          rates come from the <code>open.er-api.com</code> data feed described above, and
+          conversion math is performed by code in the user's browser, not by a language model.
+        </p>
+      </section>
+
+      <section className="legal-page__section">
+        <h2>9. Known limitations</h2>
         <p>
           We believe in stating openly what this site is <em>not</em>:
         </p>
@@ -212,7 +227,7 @@ export function MethodologyPage() {
       </section>
 
       <section className="legal-page__section">
-        <h2>9. Corrections policy</h2>
+        <h2>10. Corrections policy</h2>
         <p>
           If you spot an error — a typo, a stale figure, a misleading framing — please write to us
           via the <Link to="/contact">contact page</Link>. We respond to corrections requests within
@@ -222,7 +237,7 @@ export function MethodologyPage() {
       </section>
 
       <section className="legal-page__section">
-        <h2>10. Independence and funding</h2>
+        <h2>11. Independence and funding</h2>
         <p>
           About Currency is funded by display advertising served through Google AdSense, plus a
           small set of contextual partner links that we may add in the future and disclose
