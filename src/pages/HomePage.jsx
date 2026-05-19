@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { SeoHead } from '../seo/SeoHead.jsx'
-import { BreadcrumbSchema } from '../seo/StructuredData.jsx'
+import { BreadcrumbSchema, FinancialProductSchema } from '../seo/StructuredData.jsx'
 import { getHomeSeo, SITE_URL } from '../seo/seoContent.js'
 import { CurrencyInput } from '../components/CurrencyInput/CurrencyInput.jsx'
 import { CurrencyFilter } from '../components/CurrencyFilter/CurrencyFilter.jsx'
@@ -134,6 +134,7 @@ export function HomePage() {
     <div className="page">
       <SeoHead title={seo.title} description={seo.description} path="/" />
       <BreadcrumbSchema items={[{ name: 'Home', url: SITE_URL }]} />
+      <FinancialProductSchema />
 
       <PageHeader t={t} showLive />
 
