@@ -4,8 +4,10 @@ import { BreadcrumbSchema, ArticleSchema } from '../../seo/StructuredData.jsx'
 import { SITE_URL } from '../../seo/seoContent.js'
 import { GUIDES, getGuide } from '../../content/guides.js'
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs.jsx'
+import { BylineMeta } from '../../components/BylineMeta/BylineMeta.jsx'
 import { AdSlot } from '../../components/AdSlot/AdSlot.jsx'
 import { AD_SLOTS } from '../../constants/adsense.js'
+import { useI18n } from '../../i18n/I18nContext.jsx'
 import './guides.css'
 
 function renderInline(child, j) {
@@ -62,6 +64,7 @@ function renderBlock(block, i) {
 export function GuidePage() {
   const { slug } = useParams()
   const guide = getGuide(slug)
+  const { t, lang } = useI18n()
 
   if (!guide) {
     return (
@@ -91,8 +94,9 @@ export function GuidePage() {
         headline={guide.title}
         description={guide.description}
         url={url}
-        datePublished={guide.updated}
+        datePublished={guide.published}
         dateModified={guide.updated}
+        authorSlug={guide.authorSlug}
       />
 
       <Breadcrumbs items={[
@@ -104,13 +108,15 @@ export function GuidePage() {
       <header className="guide-article__header">
         <span className="guide-article__category">{guide.category}</span>
         <h1>{guide.title}</h1>
-        <div className="guide-article__meta">
-          <span>By the About Currency editorial team</span>
-          <span aria-hidden="true">·</span>
-          <span>{guide.readingMinutes} min read</span>
-          <span aria-hidden="true">·</span>
-          <span>Updated {guide.updated}</span>
-        </div>
+        <BylineMeta
+          authorSlug={guide.authorSlug}
+          byLabel={t.bylineBy}
+          reviewedDate={guide.updated}
+          reviewedLabel={t.bylineLastReviewed}
+          readingMinutes={guide.readingMinutes}
+          readingLabel={t.bylineMinRead}
+          lang={lang}
+        />
       </header>
 
       <div className="guide-article__body">
