@@ -13,7 +13,7 @@ Five-phase Vertical MVP sprint to reinforce the existing currencyabout.com site 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Editorial trust signals (E-E-A-T)** — Real bylines, last-reviewed dates, author hub, expanded methodology, structured-data depth, pair-page editorial audit
+- [x] **Phase 1: Editorial trust signals (E-E-A-T)** — Real bylines, last-reviewed dates, author hub, expanded methodology, structured-data depth, pair-page editorial audit (completed 2026-05-19)
 - [ ] **Phase 2: UX polish — mobile, a11y, cookie banner** — Fix mobile breakpoints, accessibility issues, cookie banner UX, link rot
 - [ ] **Phase 3: Performance + Core Web Vitals** — Code-split bundle, reserve ad-slot space, validate LCP/CLS/INP in the "Good" range
 - [ ] **Phase 4: Glossary popovers** — Click-triggered native-popover definitions on ~10–15 finance terms, cross-linked to guides
@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. JSON-LD on guides emits `author` (Person), `datePublished`, `dateModified`, and `publisher`; home and indexable pair pages emit `FinancialProduct` or `CurrencyConversionService`
   5. Every indexable pair page (per `isIndexablePair()`) carries ≥150 words of pair-specific editorial; thin pairs remain `noindex`
 
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 **Wave 1**
@@ -48,7 +48,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-03: Editorial uniformity — render "Last reviewed" dates on guides, extend `/methodology` with editorial-standards/corrections/AI-disclosure, audit pair-page editorial uniqueness
+- [x] 01-03: Editorial uniformity — render "Last reviewed" dates on guides, extend `/methodology` with editorial-standards/corrections/AI-disclosure, audit pair-page editorial uniqueness
 
 **Cross-cutting constraints:**
 
