@@ -1147,27 +1147,35 @@ No test framework is present. No test files need to be created — manual verifi
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+All four questions below are resolved via `checkpoint:human-input` gates in the plan tasks listed. The planner converted each open question into a blocking checkpoint so execution pauses until the user supplies the value.
 
 1. **Author identity (required before plan-phase execution of 01-01)**
    - What we know: byline is the project owner's real name (D-01); all data is captured in `authors.js`
    - What's unclear: the exact name string, job title, bio text, and external link URL
    - Recommendation: planner must request these from the user before 01-01 can produce runnable tasks
+   - RESOLVED → 01-01 Task 1 checkpoint (`checkpoint:human-input`, gate="blocking"): "Collect author identity from the user — Real full name, job title, 80-120-word bio, expertise statement, external link URL + text."
 
 2. **Guide `published` dates (required before executing the guides.js backfill in plan 01-02)**
    - What we know: for guides where the true publication date is unknown, use `updated` as the floor (D-15)
    - What's unclear: does the user want to supply earlier publication dates for any of the 16 guides, or default all to `updated`?
    - Recommendation: planner asks the user; default to `updated` if no answer within the sprint window
+   - RESOLVED → 01-02 Task 1 checkpoint (`checkpoint:human-input`, gate="blocking"): "Collect per-guide published dates — user supplies overrides or accepts default (use `updated` as floor); finder enforces `published <= updated`."
 
 3. **AI disclosure paragraph exact copy (required before plan 01-03 can merge)**
    - What we know: "AI-assisted, human-reviewed" is the agreed framing (D-19); planning agent proposes, user reviews
    - What's unclear: the specific workflow details (what tool, what percentage of content, what review process)
    - Recommendation: planner generates a draft in the plan artifacts; user reviews and approves before plan 01-03 executes
+   - RESOLVED → 01-03 Task 2 checkpoint (`checkpoint:human-input`, gate="blocking"): "Collect AI-assistance disclosure copy — agent proposes 100-150-word draft following §3B skeleton; user approves verbatim or supplies revised paragraph + section title."
 
 4. **Methodology section heading numbering**
    - What we know: new §8 displaces existing §8–§10 by one; the new section is "Use of AI tools in content creation"
    - What's unclear: whether the user wants "8. Use of AI tools..." or a different title/position
    - Recommendation: planner proposes; user confirms at execution time
+   - RESOLVED → 01-03 Task 2 checkpoint (section title approval — same checkpoint as Q3 above; the user confirms "Use of AI tools in content creation" or supplies alternative title) and 01-03 Task 3 (mechanical renumbering of §8/§9/§10 → §9/§10/§11 once §8 title is locked).
+
+Note: The per-pair intro authoring (Wave 1, 38 pairs) is also resolved via four sequential `checkpoint:human-input` gates in plan 01-03 (Task 4 Batch A, Task 5 Batch B, Task 6 Batch C, Task 7 Batch D — 10+10+10+8 intros respectively). This was not surfaced as an explicit "open question" above because the requirement (~150-200 words of hand-written prose per pair) was already locked in D-09; the checkpoints exist to keep editorial review tractable across batches rather than to resolve any unknown.
 
 ---
 
