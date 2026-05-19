@@ -187,6 +187,13 @@
   color: var(--color-text-secondary);
 }
 
+.seo-content__intro {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
 .seo-content ul,
 .seo-content ol {
   padding-left: 22px;

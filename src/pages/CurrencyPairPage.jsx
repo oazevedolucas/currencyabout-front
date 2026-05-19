@@ -16,6 +16,7 @@ import { AdSlot } from '../components/AdSlot/AdSlot.jsx'
 import { AD_SLOTS } from '../constants/adsense.js'
 import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
 import { getProfile } from '../content/currencyProfiles.js'
+import { getPairIntro } from '../content/pairProfiles.js'
 import { NotFoundPage } from './NotFoundPage.jsx'
 
 function formatRateDisplay(rate) {
@@ -81,6 +82,7 @@ export function CurrencyPairPage() {
   const fromProfile = getProfile(fromCode)
   const toProfile = getProfile(toCode)
   const reverseRate = rate > 0 ? 1 / rate : 0
+  const pairIntro = getPairIntro(fromCode, toCode)
 
   const faqQuestions = [
     {
@@ -206,6 +208,7 @@ export function CurrencyPairPage() {
 
       {/* Rich editorial content */}
       <section className="seo-content" aria-label={`${fromCode} to ${toCode} information`}>
+        {pairIntro && <p className="seo-content__intro">{pairIntro}</p>}
         <h2>Converting {fromName} ({fromCode}) to {toName} ({toCode})</h2>
         <p>
           Whether you are planning a trip, paying an international invoice, sending money to family,
