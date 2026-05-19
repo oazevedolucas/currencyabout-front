@@ -35,7 +35,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. JSON-LD on guides emits `author` (Person), `datePublished`, `dateModified`, and `publisher`; home and indexable pair pages emit `FinancialProduct` or `CurrencyConversionService`
   5. Every indexable pair page (per `isIndexablePair()`) carries ≥150 words of pair-specific editorial; thin pairs remain `noindex`
 
-**Plans:** 1/3 plans executed
+**Plans:** 2/3 plans executed
 
 Plans:
 **Wave 1**
@@ -44,7 +44,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02: Structured-data depth — extend `ArticleSchema` with author/dates/publisher, add `FinancialProduct`/`CurrencyConversionService` to home + indexable pair pages
+- [x] 01-02: Structured-data depth — extend `ArticleSchema` with author/dates/publisher, add `FinancialProduct`/`CurrencyConversionService` to home + indexable pair pages
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
