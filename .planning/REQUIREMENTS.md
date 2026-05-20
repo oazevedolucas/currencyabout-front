@@ -9,13 +9,13 @@ Sprint scope. Each maps to exactly one roadmap phase. All requirements are writt
 
 ### Trust signals (E-E-A-T) — Phase 1
 
-- [ ] **EEAT-01**: User sees a real author byline (project owner's real name) on every guide page, linked to a verifiable author bio
-- [ ] **EEAT-02**: User sees a visible "Last reviewed: YYYY-MM-DD" date on every guide page, sourced from the existing `updated` field in `src/content/guides.js`
-- [ ] **EEAT-03**: User reaches a substantive author hub (extension of `/about` or a new `/authors/<slug>` route) showing the author's bio, expertise statement, and contact path
-- [ ] **EEAT-04**: User reading `/methodology` finds new sections covering editorial process, corrections policy, and an honest AI-use disclosure ("AI-assisted, human-reviewed")
-- [ ] **EEAT-05**: Search engines and AdSense crawler see `author` (Person), `datePublished`, `dateModified`, and `publisher` properties on `ArticleSchema` JSON-LD for every guide
-- [ ] **EEAT-06**: Search engines see `FinancialProduct` or `CurrencyConversionService` JSON-LD on the home page and every indexable pair page
-- [ ] **EEAT-07**: Every indexable currency pair page carries at least 150 words of pair-specific editorial that is not templated across pairs; thin pairs remain `noindex`
+- [x] **EEAT-01**: User sees a real author byline (project owner's real name) on every guide page, linked to a verifiable author bio
+- [x] **EEAT-02**: User sees a visible "Last reviewed: YYYY-MM-DD" date on every guide page, sourced from the existing `updated` field in `src/content/guides.js`
+- [x] **EEAT-03**: User reaches a substantive author hub (extension of `/about` or a new `/authors/<slug>` route) showing the author's bio, expertise statement, and contact path
+- [x] **EEAT-04**: User reading `/methodology` finds new sections covering editorial process, corrections policy, and an honest AI-use disclosure ("AI-assisted, human-reviewed")
+- [x] **EEAT-05**: Search engines and AdSense crawler see `author` (Person), `datePublished`, `dateModified`, and `publisher` properties on `ArticleSchema` JSON-LD for every guide
+- [x] **EEAT-06**: Search engines see `FinancialProduct` or `CurrencyConversionService` JSON-LD on the home page and every indexable pair page
+- [x] **EEAT-07**: Every indexable currency pair page carries at least 150 words of pair-specific editorial that is not templated across pairs; thin pairs remain `noindex`
 
 ### UX polish — Phase 2
 
@@ -91,13 +91,13 @@ Populated when ROADMAP.md is created.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| EEAT-01 | Phase 1 | Pending |
-| EEAT-02 | Phase 1 | Pending |
-| EEAT-03 | Phase 1 | Pending |
-| EEAT-04 | Phase 1 | Pending |
-| EEAT-05 | Phase 1 | Pending |
-| EEAT-06 | Phase 1 | Pending |
-| EEAT-07 | Phase 1 | Pending |
+| EEAT-01 | Phase 1 | Complete |
+| EEAT-02 | Phase 1 | Complete |
+| EEAT-03 | Phase 1 | Complete |
+| EEAT-04 | Phase 1 | Complete |
+| EEAT-05 | Phase 1 | Complete |
+| EEAT-06 | Phase 1 | Complete |
+| EEAT-07 | Phase 1 | Complete |
 | UX-01 | Phase 2 | Pending |
 | UX-02 | Phase 2 | Pending |
 | UX-03 | Phase 2 | Pending |
