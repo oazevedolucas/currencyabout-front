@@ -73,7 +73,12 @@ Plans:
 
 Plans:
 
+**Wave 1**
+
 - [ ] 02-01: Mobile breakpoint audit + fixes — verify and tighten home/guide/pair/exchange-rates-today/methodology at 375×667; verify above-the-fold ad-density rule
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 02-02: A11y + cookie banner + link rot — axe/Lighthouse pass, contrast fixes, cookie banner UX corrections, production link checker
 
 ### Phase 3: Performance + Core Web Vitals
