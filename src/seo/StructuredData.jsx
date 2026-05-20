@@ -108,7 +108,7 @@ export function FinancialProductSchema() {
       url: 'https://currencyabout.com',
     },
     category: 'Currency Conversion Tool',
-    feesAndCommissionsSpecification: 'Free — no fees charged for currency conversion.',
+    feesAndCommissionsSpecification: 'Free. No fees charged for currency conversion.',
     areaServed: 'Worldwide',
     termsOfService: 'https://currencyabout.com/terms',
     availableLanguage: ['en', 'pt', 'es', 'fr', 'de', 'zh', 'ja'],
