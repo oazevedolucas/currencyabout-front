@@ -99,7 +99,7 @@ export function FinancialProductSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FinancialProduct',
-    name: 'About Currency — Free Currency Converter',
+    name: 'About Currency: Free Currency Converter',
     description: 'Mid-market reference rate converter for 21 world currencies, updated daily.',
     url: 'https://currencyabout.com',
     provider: {

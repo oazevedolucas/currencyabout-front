@@ -96,7 +96,7 @@ export function AboutPage() {
       <section className="legal-page__section" id="author">
         <h2>About the author</h2>
         <p className="legal-page__byline-lead">
-          <strong>{AUTHORS['lucas-azevedo-souza'].name}</strong> — {AUTHORS['lucas-azevedo-souza'].jobTitle}
+          <strong>{AUTHORS['lucas-azevedo-souza'].name}</strong>, {AUTHORS['lucas-azevedo-souza'].jobTitle}
         </p>
         <p>{AUTHORS['lucas-azevedo-souza'].bio}</p>
         <p>
