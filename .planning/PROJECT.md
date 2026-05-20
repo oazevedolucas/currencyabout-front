@@ -33,13 +33,13 @@ working, in-production capabilities that this sprint must NOT break. -->
 - ✓ Custom i18n with 7 languages (EN/PT/ES/FR/DE/ZH/JA) served from a single URL with hreflang — existing (`src/i18n/I18nContext.jsx`)
 - ✓ `ads.txt` with correct publisher line — existing (`public/ads.txt`)
 - ✓ AdSense application re-submitted to Google for review (less than 7 days old as of project init) with real slot ids replacing placeholders
+- ✓ Editorial trust signals (E-E-A-T) — real-name byline on every guide, "Last reviewed:" dates, `/about#author` hub with bio + expertise statement + LinkedIn link, AI-assistance disclosure on `/methodology`, Person + FinancialProduct + Service JSON-LD, and 38 hand-written intros on the indexable currency-pair pages — validated in Phase 1
 
 ### Active
 
 <!-- The 5 phases this sprint will deliver. Each is a hypothesis that ships
 during this 1–2 week window. -->
 
-- [ ] **Editorial trust signals (E-E-A-T):** Add author bylines, `Last reviewed` dates, source-citation patterns, and an editorial standards block visible from guides and methodology to push the site beyond "competent" into "this is a real publisher with domain expertise" on a reviewer's first scan
 - [ ] **UX polish across home, guide, pair, and legal pages:** Mobile breakpoint audit, accessibility pass (contrast, keyboard nav, focus states, `aria-*` correctness), visual consistency tightening (spacing, hierarchy, dark-mode quality) — no rebrand
 - [ ] **Performance + Core Web Vitals:** Code-split the >500 KB single JS bundle (`vite build` warning), defer non-critical CSS/JS, lazy-load below-the-fold imagery, validate LCP/CLS/INP fall in the "Good" range on a mid-tier mobile device
 - [ ] **Feature — Glossary popovers:** Lightweight inline definitions for ~10–15 finance terms (mid-market, bid-ask, spread, REER, DXY, peg, float, etc.) that appear contextually across guides, methodology, and pair pages; click/tap reveals a short definition with a "Read more" link to the relevant guide
@@ -107,4 +107,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-19 after initialization*
+*Last updated: 2026-05-20 after Phase 1 (Editorial trust signals / E-E-A-T) completed*
