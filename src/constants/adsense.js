@@ -19,6 +19,21 @@ export const AD_SLOTS = {
   pairEnd: '0000000005',
 }
 
+// Reserved vertical space (px) per slot to prevent CLS on post-consent
+// ad injection. Values aligned with standard AdSense responsive sizes:
+//   280 = large rectangle / responsive auto
+//   250 = medium rectangle (mid/end placements)
+// Keyed by the AD_SLOTS key name (not the numeric slot id) so AdSlot
+// consumers can look up the reservation by the same name they pass to
+// <AdSlot slotId={AD_SLOTS.homeEditorial} />. See Phase 3 CONTEXT.md D-04.
+export const SLOT_RESERVATIONS = {
+  homeEditorial: 280,
+  guideMid: 250,
+  guideEnd: 250,
+  pairBelowConversion: 280,
+  pairEnd: 250,
+}
+
 // Routes where we never render ads, per AdSense policy and editorial choice:
 // legal pages, contact, methodology, and the about page should remain ad-free.
 // Guide and pair pages are allowed and handled at the placement site.
