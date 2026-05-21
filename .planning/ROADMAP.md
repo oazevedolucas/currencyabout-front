@@ -14,7 +14,7 @@ Five-phase Vertical MVP sprint to reinforce the existing currencyabout.com site 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Editorial trust signals (E-E-A-T)** — Real bylines, last-reviewed dates, author hub, expanded methodology, structured-data depth, pair-page editorial audit (completed 2026-05-19)
-- [ ] **Phase 2: UX polish — mobile, a11y, cookie banner** — Fix mobile breakpoints, accessibility issues, cookie banner UX, link rot
+- [x] **Phase 2: UX polish — mobile, a11y, cookie banner** — Fix mobile breakpoints, accessibility issues, cookie banner UX, link rot (completed 2026-05-20)
 - [ ] **Phase 3: Performance + Core Web Vitals** — Code-split bundle, reserve ad-slot space, validate LCP/CLS/INP in the "Good" range
 - [ ] **Phase 4: Glossary popovers** — Click-triggered native-popover definitions on ~10–15 finance terms, cross-linked to guides
 - [ ] **Phase 5: Favorites / recently used pairs** — Versioned localStorage favorites strip on home and exchange-rates-today
@@ -75,11 +75,11 @@ Plans:
 
 **Wave 1**
 
-- [ ] 02-01: Mobile breakpoint audit + fixes — verify and tighten home/guide/pair/exchange-rates-today/methodology at 375×667; verify above-the-fold ad-density rule
+- [x] 02-01: Mobile breakpoint audit + fixes — verify and tighten home/guide/pair/exchange-rates-today/methodology at 375×667; verify above-the-fold ad-density rule (completed 2026-05-20, commit `2713883`)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 02-02: A11y + cookie banner + link rot — axe/Lighthouse pass, contrast fixes, cookie banner UX corrections, production link checker
+- [x] 02-02: A11y + cookie banner + link rot — axe/Lighthouse pass, contrast fixes, cookie banner UX corrections, production link checker (completed 2026-05-20, commit `04e3904`)
 
 ### Phase 3: Performance + Core Web Vitals
 
