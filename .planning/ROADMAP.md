@@ -95,11 +95,11 @@ Plans:
   4. Mobile LCP < 2.5s, CLS < 0.1, INP < 200ms on home, one guide, and one indexable pair page (Chrome DevTools Lighthouse, "Slow 4G + 4x CPU throttle")
   5. AdSense loader script remains `async` and consent-gated; no regression to the existing `useAdSenseLoader` behavior
 
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
 
-- [ ] 03-01: Bundle split — `React.lazy` per route in `App.jsx` (keep `HomePage`/`Layout` eager), `manualChunks` in `vite.config.js` for react/react-router/helmet vendor splits, lazy `guides.js`
+- [x] 03-01: Bundle split — `React.lazy` per route in `App.jsx` (keep `HomePage`/`Layout` eager), `manualChunks` in `vite.config.js` for react/react-router/helmet vendor splits, lazy `guides.js`
 - [ ] 03-02: AdSlot reserved-height + CWV validation — `AD_SLOTS_HEIGHTS` map on `<AdSlot />`, Lighthouse + PageSpeed Insights pass at mobile profile, no regression to AdSense loader
 
 ### Phase 4: Glossary popovers
