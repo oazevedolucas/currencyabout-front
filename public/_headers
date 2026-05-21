@@ -19,3 +19,10 @@
   Cache-Control: public, max-age=86400
 /icons/*
   Cache-Control: public, max-age=86400
+
+# Site-wide security headers (no Cache-Control here — SPA shell needs to revalidate)
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
