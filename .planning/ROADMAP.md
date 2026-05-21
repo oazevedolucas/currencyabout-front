@@ -95,7 +95,7 @@ Plans:
   4. Mobile LCP < 2.5s, CLS < 0.1, INP < 200ms on home, one guide, and one indexable pair page (Chrome DevTools Lighthouse, "Slow 4G + 4x CPU throttle")
   5. AdSense loader script remains `async` and consent-gated; no regression to the existing `useAdSenseLoader` behavior
 
-**Plans:** 1/2 plans executed
+**Plans:** 2/3 plans executed
 
 Plans:
 
