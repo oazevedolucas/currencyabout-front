@@ -9,3 +9,11 @@ dist
 !.dev.vars.example
 .env*
 !.env.example
+
+# Per-developer skill installs (npx skills add); install via the same command on each machine
+.agents/
+.claude/skills/seo*
+skills-lock.json
+
+# Audit work products: keep the .md reports, drop the raw sampled HTML
+.planning/seo/audit-*/pages/
