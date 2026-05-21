@@ -9,7 +9,9 @@
     <meta name="description" content="Convert currencies instantly with live exchange rates. Free real-time converter for USD, EUR, GBP, BRL, JPY and 20+ world currencies. Updated daily." />
     <meta name="keywords" content="currency converter, exchange rates, USD to BRL, EUR to BRL, dollar today, euro today, live exchange rates, currency conversion" />
     <meta name="author" content="About Currency" />
-    <link rel="canonical" href="https://currencyabout.com/" />
+    <!-- Canonical is set per-route by react-helmet-async in src/seo/SeoHead.jsx. -->
+    <!-- The static fallback ("https://currencyabout.com/") was removed because non-rendering -->
+    <!-- crawlers would otherwise treat every URL as a duplicate of home. -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <!-- Open Graph -->
