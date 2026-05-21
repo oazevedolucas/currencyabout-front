@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { hasMarketingConsent } from '../CookieConsent/CookieConsent.jsx'
-import { ADSENSE_CLIENT_ID, isAdAllowedOnRoute } from '../../constants/adsense.js'
+import { ADSENSE_CLIENT_ID, AD_SLOTS, SLOT_RESERVATIONS, isAdAllowedOnRoute } from '../../constants/adsense.js'
 import './AdSlot.css'
 
 // Renders an AdSense slot, gated by:
@@ -14,6 +14,9 @@ export function AdSlot({ slotId, format = 'auto', layout, className = '' }) {
   const insRef = useRef(null)
   const pushedRef = useRef(false)
   const [consent, setConsent] = useState(() => hasMarketingConsent())
+
+  const reservationKey = Object.keys(AD_SLOTS).find((k) => AD_SLOTS[k] === slotId)
+  const reservedMinHeight = reservationKey ? SLOT_RESERVATIONS[reservationKey] : undefined
 
   useEffect(() => {
     function onConsentChange(e) {
@@ -56,7 +59,12 @@ export function AdSlot({ slotId, format = 'auto', layout, className = '' }) {
   if (!isAdAllowedOnRoute(location.pathname)) return null
 
   return (
-    <div className={`adslot ${className}`.trim()} role="complementary" aria-label="Advertisement">
+    <div
+      className={`adslot ${className}`.trim()}
+      role="complementary"
+      aria-label="Advertisement"
+      style={{ minHeight: reservedMinHeight }}
+    >
       <ins
         ref={insRef}
         className="adsbygoogle adslot__ins"
