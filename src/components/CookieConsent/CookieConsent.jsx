@@ -21,9 +21,21 @@ export function CookieConsent() {
 
   useEffect(() => {
     const stored = getStoredConsent()
+    let timerId
     if (!stored) {
-      const id = setTimeout(() => setVisible(true), 600)
-      return () => clearTimeout(id)
+      timerId = setTimeout(() => setVisible(true), 600)
+    }
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape' && getStoredConsent() === null) {
+        decide('rejected')
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      if (timerId) clearTimeout(timerId)
+      window.removeEventListener('keydown', handleKeyDown)
     }
   }, [])
 
@@ -47,7 +59,7 @@ export function CookieConsent() {
           <p id="cookie-consent-desc" className="cookie-consent__desc">
             About Currency uses cookies to remember your language and theme, and may use
             advertising and analytics cookies in the future to keep the site free. You can
-            accept all cookies or reject non-essential ones at any time. See our
+            accept all cookies or reject them at any time. See our
             {' '}<Link to="/privacy-policy" className="cookie-consent__link">privacy policy</Link>
             {' '}for details.
           </p>
@@ -58,7 +70,7 @@ export function CookieConsent() {
             className="cookie-consent__btn cookie-consent__btn--ghost"
             onClick={() => decide('rejected')}
           >
-            Reject non-essential
+            Reject all
           </button>
           <button
             type="button"

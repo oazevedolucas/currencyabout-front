@@ -56,7 +56,7 @@ export function AdSlot({ slotId, format = 'auto', layout, className = '' }) {
   if (!isAdAllowedOnRoute(location.pathname)) return null
 
   return (
-    <div className={`adslot ${className}`.trim()} aria-label="Advertisement">
+    <div className={`adslot ${className}`.trim()} role="complementary" aria-label="Advertisement">
       <ins
         ref={insRef}
         className="adsbygoogle adslot__ins"

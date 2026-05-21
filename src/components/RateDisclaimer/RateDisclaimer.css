@@ -22,7 +22,12 @@
 
 .rate-disclaimer__text a {
   color: var(--color-primary, #16a34a);
-  text-decoration: none;
+  /* Link distinguishability (WCAG 2.2 SC 1.4.1): the link color does not
+     reach 3:1 against the muted --color-text-secondary surrounding text in
+     dark mode, so a resting underline is required as the non-color
+     affordance to differentiate the link. */
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .rate-disclaimer__text a:hover {

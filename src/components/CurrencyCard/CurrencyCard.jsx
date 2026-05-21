@@ -72,6 +72,27 @@ export const CurrencyCard = memo(function CurrencyCard({ currency, amount, fromC
         </span>
       )}
 
+      {hasValue && (
+        <button
+          type="button"
+          className={`currency-card__copy ${copied ? 'currency-card__copy--success' : ''}`}
+          onClick={handleCopy}
+          aria-label={copyLabel}
+          title={copyLabel}
+        >
+          {copied ? (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ) : (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" strokeWidth="2" />
+              <path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          )}
+        </button>
+      )}
+
       <div
         className="currency-card__summary"
         role="button"
@@ -90,26 +111,6 @@ export const CurrencyCard = memo(function CurrencyCard({ currency, amount, fromC
             </div>
             <span className="currency-card__name">{currency.name}</span>
           </div>
-          {hasValue && (
-            <button
-              type="button"
-              className={`currency-card__copy ${copied ? 'currency-card__copy--success' : ''}`}
-              onClick={handleCopy}
-              aria-label={copyLabel}
-              title={copyLabel}
-            >
-              {copied ? (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              ) : (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" strokeWidth="2" />
-                  <path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              )}
-            </button>
-          )}
         </div>
         <div className="currency-card__value">
           <span className="currency-card__converted">
@@ -129,7 +130,7 @@ export const CurrencyCard = memo(function CurrencyCard({ currency, amount, fromC
       <div
         id={`card-detail-${currency.code}`}
         className="currency-card__detail"
-        aria-hidden={!expanded}
+        inert={!expanded}
       >
         <div className="currency-card__detail-inner">
           <h4 className="currency-card__detail-title">

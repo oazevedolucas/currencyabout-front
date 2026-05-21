@@ -28,11 +28,23 @@
 
 .precision-toggle__btn--active {
   background: var(--color-primary-dark);
-  color: #fff;
+  /* Same near-black-on-green strategy as QuickAmounts chip-active (WCAG 2.2
+     AA, 4.5:1 normal text). Light: --color-text-primary = #0f1f17 over
+     #16a34a ≈ 5:1. Dark theme override below. */
+  color: var(--color-text-primary);
+}
+
+:root[data-theme='dark'] .precision-toggle__btn--active {
+  /* Dark: --color-text-inverse = #0b120e over #22c55e ≈ 9:1. */
+  color: var(--color-text-inverse);
 }
 
 .precision-toggle__btn--active:hover {
-  color: #fff;
+  color: var(--color-text-primary);
+}
+
+:root[data-theme='dark'] .precision-toggle__btn--active:hover {
+  color: var(--color-text-inverse);
 }
 
 .sr-only {

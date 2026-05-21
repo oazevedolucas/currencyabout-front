@@ -47,12 +47,28 @@
 .quick-amounts__chip--active {
   background: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
-  color: #fff;
+  /* Resting active chip — near-black text on the bright green chip in both
+     themes for WCAG 2.2 AA (4.5:1) on normal text. Light theme:
+     --color-text-primary = #0f1f17 over #16a34a ≈ 5:1. Dark theme is
+     overridden below because --color-text-primary flips to a light shade. */
+  color: var(--color-text-primary);
   font-weight: 600;
+}
+
+:root[data-theme='dark'] .quick-amounts__chip--active {
+  /* Dark theme: --color-text-inverse = #0b120e (near-black) over the
+     dark-theme --color-primary-dark = #22c55e ≈ 9:1. */
+  color: var(--color-text-inverse);
 }
 
 .quick-amounts__chip--active:hover {
   background: var(--color-primary);
   border-color: var(--color-primary);
+  /* Hover bg is --color-primary (#4ade80, identical in both themes). Same
+     near-black-text strategy: text-primary in light, text-inverse in dark. */
+  color: var(--color-text-primary);
+}
+
+:root[data-theme='dark'] .quick-amounts__chip--active:hover {
   color: var(--color-text-inverse);
 }
