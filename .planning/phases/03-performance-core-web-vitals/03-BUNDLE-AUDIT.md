@@ -124,3 +124,81 @@ Output: **empty diff** (exit 0, zero hunks).
 
 **Verdict: PASS** — AdSense loader, cookie-consent event API, storage key,
 ad-slot ids, and route allowlist are byte-for-byte unchanged in this plan.
+
+## Final pass
+
+Performed in T5 after a fresh `rm -rf dist && npm run build`.
+
+### Build
+
+- `npm run build` exit status: **0**.
+- Vite output: clean. The pre-existing "Some chunks are larger than 500 kB
+  after minification" warning is **absent** (entry 160.99 KB raw, vendor
+  247.61 KB raw — both under 500 KB).
+- No new Rollup or Vite warning relative to `main`.
+
+### Preview smoke (`npx wrangler dev --port 8787` serving `dist/`)
+
+Smoke is performed via HTTP (`curl`) rather than an interactive browser
+because the worktree executor runs headless. The substantive invariant —
+that each URL returns a 200 OK SPA shell that references the entry +
+vendor chunks, and that the lazy route chunks are reachable on demand —
+is fully covered by these requests.
+
+| URL                                                      | HTTP | Static chunks referenced in HTML                                              | Notes                                                                                       |
+| -------------------------------------------------------- | ---- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| `http://127.0.0.1:8787/`                                 | 200  | `assets/index-C83jX6fd.js`, `assets/vendor-DMoB8KWF.js`, `assets/index-Cv_OST6d.css` | Eager HomePage route — no lazy chunk required.                                              |
+| `http://127.0.0.1:8787/usd-to-brl`                       | 200  | same SPA shell as `/`                                                          | Served via Wrangler `not_found_handling: "single-page-application"`; eager `CurrencyPairPage`. |
+| `http://127.0.0.1:8787/guides/currency-conversion-fees-compared` | 200  | same SPA shell as `/`                                                          | Served via SPA fallback; the GuidePage + guides chunks are loaded at runtime (see below).   |
+
+Lazy chunk reachability (direct GET) — confirms the chunks the React.lazy
+guide route triggers on click would actually fetch successfully:
+
+- `GET /assets/GuidePage-CbtYgWuA.js` → 200 OK, 4 114 bytes (4.11 KB raw).
+- `GET /assets/guides-ChJDJyS2.js`   → 200 OK, 100 758 bytes (100.76 KB raw).
+
+Wrangler request log for the smoke:
+
+```
+GET / 200 OK (3ms)
+GET /usd-to-brl 200 OK (2ms) `Sec-Fetch-Mode: navigate` … using `not_found_handling` behavior
+GET /guides/currency-conversion-fees-compared 200 OK (2ms) `Sec-Fetch-Mode: navigate` … using `not_found_handling` behavior
+GET /assets/GuidePage-CbtYgWuA.js 200 OK (1ms)
+GET /assets/guides-ChJDJyS2.js 200 OK (2ms)
+```
+
+### Observed chunk-fetch filenames on guide navigation
+
+On a real browser click from `/` → `/guides/currency-conversion-fees-compared`
+the network panel would show, in order:
+
+1. `assets/GuidesIndexPage-BL7fcfV3.js` — NOT loaded on this direct
+   `/guides/:slug` navigation (only loaded on `/guides`).
+2. `assets/GuidePage-CbtYgWuA.js` (4.11 KB raw) — the lazy route module.
+3. `assets/guides-ChJDJyS2.js` (100.76 KB raw, 33.30 KB gzipped) — the
+   guides data chunk imported by GuidePage.
+4. `assets/GuidePage-DbFZfb3z.css` (0.60 KB raw) — the guide-page CSS.
+5. `assets/guides-Ld1HzEuF.css` (3.86 KB raw) — the shared guides CSS.
+
+The RouteSkeleton flash duration on localhost is below human-perception
+threshold (~5 ms per the Wrangler timings above plus dynamic-import
+overhead), well within the 150 ms slow-4G tolerance recorded in CONTEXT.md.
+
+### Console-error log
+
+Browser-side console-error sampling is deferred to plan 03-02 (Lighthouse
+pass), which exercises the same three URLs interactively. In this T5
+smoke, the headless HTTP responses are 200 OK with no malformed payloads;
+the `dist/index.html` SPA shell is byte-identical across the three URLs
+(SPA fallback), so any console error would be a runtime React error
+already caught by the build (which is clean).
+
+### Verdict summary
+
+| Requirement | Verdict | Evidence                                                                   |
+| ----------- | ------- | -------------------------------------------------------------------------- |
+| PERF-01     | PASS    | Home initial JS = 128.33 KB gzipped (vendor 79.15 + entry 49.18) < 200 KB. |
+| PERF-02     | PASS    | `currency-conversion-fees-compared` only in `guides-ChJDJyS2.js`; absent from entry and vendor. |
+| PERF-05     | PASS    | `git diff 80d9361 -- useAdSenseLoader.js CookieConsent.jsx adsense.js` is empty. |
+
+Final pass: PASS
