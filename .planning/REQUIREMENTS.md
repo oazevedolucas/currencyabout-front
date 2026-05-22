@@ -34,6 +34,14 @@ Sprint scope. Each maps to exactly one roadmap phase. All requirements are writt
 - [ ] **PERF-04**: Mobile LCP < 2.5s, CLS < 0.1, INP < 200ms on home, guide, and pair pages, measured via Chrome DevTools Lighthouse on a Mid-tier (Slow 4G + 4x CPU throttle) profile
 - [ ] **PERF-05**: AdSense loader script (`adsbygoogle.js`) continues to load `async` and is not gated behind user interaction or `requestIdleCallback`; consent-gating from commit `5f46310` is preserved unchanged
 
+### SSG / pre-render for non-rendering crawlers — Phase 03.1 (INSERTED)
+
+- [ ] **SSG-01**: After `npm run build`, every URL in `public/sitemap.xml` (expanded to cover every indexable pair URL in `pairProfiles.js`, ≥60 URLs total) has a corresponding `dist/<route>/index.html` file
+- [ ] **SSG-02**: Initial HTML for `/`, `/usd-to-brl`, and `/guides/currency-conversion-fees-compared` (the test trio) carries the route-specific `<title>`, `<meta description>`, `<link rel="canonical">`, OG tags, and JSON-LD — not the home-page values
+- [ ] **SSG-03**: Initial HTML for pre-rendered pair pages contains the hand-written pair-intro paragraph from `src/content/pairProfiles.js`; initial HTML for pre-rendered guides contains the lead paragraph and h2 hierarchy from `src/content/guides.js`
+- [ ] **SSG-04**: Loading `/`, `/usd-to-brl`, and `/guides/currency-conversion-fees-compared` in a real browser produces zero "Hydration failed", "Text content did not match", or "Expected server HTML to contain" console errors after the SPA hydrates on top of the pre-rendered HTML
+- [ ] **SSG-05**: `useAdSenseLoader`, `CookieConsent`, `AdSlot`, `ADSENSE_CLIENT_ID`, `AD_SLOTS`, `NO_AD_ROUTES`, `isAdAllowedOnRoute`, and `STORAGE_KEY` are byte-identical to their post-03-02 versions (the SSG integration adds only SSR-safe guards to module-load-time browser-globals access, no logic or API changes); Cloudflare's `assets.not_found_handling: "single-page-application"` fallback continues to serve `dist/index.html` for unmatched URLs
+
 ### Glossary popovers — Phase 4
 
 - [ ] **GLOSS-01**: User sees inline term triggers (visually distinct from regular text, e.g., dotted underline) on ~10–15 finance terms across guide bodies and methodology page
@@ -81,9 +89,8 @@ Explicit exclusions for this sprint. Documented to prevent scope creep mid-execu
 | Currency news ticker scraped from external feeds | Duplicate content; not original editorial (PITFALLS.md anti-feature) |
 | Service-worker offline mode for rates | Stale-rate exposure on a YMYL surface; harm risk outweighs benefit |
 | Full visual rebrand (palette, typography, hero) | User explicitly chose "Polish the current look"; rebrand during active review is high risk |
-| SSR or prerender adoption (vite-plugin-prerender, Vike, migration to Astro) | Phase 0 verified Googlebot sees real content via noscript; rebuild risk during active review not justified |
 | Sentry / Datadog RUM / GA4 RUM beacons | Adds runtime dependency; not needed for sprint scope; CWV measurement uses Chrome DevTools + PageSpeed Insights |
-| Any new runtime dependency | PROJECT.md constraint: zero net new runtime deps; `web-vitals@^5.2.0` allowed as `devDependency` only if Phase 3 needs INP attribution |
+| Any new runtime dependency | PROJECT.md constraint: zero net new runtime deps; `web-vitals@^5.2.0` allowed as `devDependency` only if Phase 3 needs INP attribution. Phase 03.1 adds ONE approved dev dependency (`vite-react-ssg`) — exception explicitly granted by the user in writing on 2026-05-22 in response to the SEO audit C-1 finding |
 
 ## Traceability
 
@@ -109,6 +116,11 @@ Populated when ROADMAP.md is created.
 | PERF-03 | Phase 3 | Pending |
 | PERF-04 | Phase 3 | Pending |
 | PERF-05 | Phase 3 | Pending |
+| SSG-01 | Phase 03.1 | Pending |
+| SSG-02 | Phase 03.1 | Pending |
+| SSG-03 | Phase 03.1 | Pending |
+| SSG-04 | Phase 03.1 | Pending |
+| SSG-05 | Phase 03.1 | Pending |
 | GLOSS-01 | Phase 4 | Pending |
 | GLOSS-02 | Phase 4 | Pending |
 | GLOSS-03 | Phase 4 | Pending |
@@ -123,8 +135,8 @@ Populated when ROADMAP.md is created.
 | FAV-06 | Phase 5 | Pending |
 
 **Coverage:**
-- v1 requirements: 30 total
-- Mapped to phases: 30
+- v1 requirements: 35 total (30 original + 5 SSG inserted)
+- Mapped to phases: 35
 - Unmapped: 0
 
 ## Pre-flight verification (done before sprint kickoff)
@@ -132,13 +144,15 @@ Populated when ROADMAP.md is created.
 Not a phase, not a requirement — a one-time check completed on 2026-05-19 before requirements were drafted.
 
 - ✓ **Phase 0**: Googlebot sees real editorial content on home (`39` matches for convert/currency/rate), pair pages (`15` matches for euro/dollar), and guide pages (`19` matches for exchange/rate) via the `<noscript>` fallback in `index.html`. SPA crawler-blindness (PITFALLS Pitfall 3) is mitigated. Roadmap structure as researched is valid.
+- ⚠ **Phase 0 update (2026-05-21 audit)**: Phase 0 verified that the noscript fallback exists, but the 2026-05-21 SEO audit (post-AdSense recusal of 2026-05-17) found that the noscript fallback is byte-identical on every URL — only the home-page H1 and currency list, never the per-route H1, pair intro, or guide body. Phase 0's PASS reflected "some content is reachable without JS," not "per-route content is reachable without JS." Phase 03.1 closes that gap.
 
 ## Key user decisions captured during requirements
 
 - **Byline:** Project owner's real name with linkable bio (LinkedIn / personal site / prior publication). Exact name and bio link to be provided during Phase 1 planning.
 - **AI disclosure copy:** "AI-assisted, human-reviewed" — the editorial process drafts content with AI assistance and reviews/edits with a human for accuracy and voice.
 - **Editorial-standards page location:** Extend `/methodology` (no new route, no nav change, no sitemap entry — lowest risk during active AdSense review).
+- **SSG dev dependency (2026-05-22):** User approved exactly one new dev dependency — `vite-react-ssg` — to fix SEO audit C-1. Picked over vike (requires routing rewrite mid-review), react-snap / Playwright (~250–300 MB Chromium footprint, snapshot-based hydration risk), and vite-plugin-prerender (less maintained). Decision is recorded in `.planning/phases/03.1-ssg-pre-render-per-route-html-for-non-rendering-crawlers/03.1-01-PLAN.md` `new_dependency` frontmatter block.
 
 ---
 *Requirements defined: 2026-05-19*
-*Last updated: 2026-05-19 after initialization*
+*Last updated: 2026-05-22 — SSG-01..05 added for Phase 03.1*

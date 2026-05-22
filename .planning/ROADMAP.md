@@ -104,13 +104,23 @@ Plans:
 
 ### Phase 03.1: SSG / pre-render — per-route HTML for non-rendering crawlers (INSERTED)
 
-**Goal:** [Urgent work - to be planned]
-**Requirements**: TBD
+**Goal:** Pre-render every URL in `public/sitemap.xml` (expanded to cover all 38 indexable pair URLs from `pairProfiles.js`) at build time so non-rendering crawlers — the AdSense reviewer crawler that drove the 2026-05-17 "low value content" recusal, Bing's first-pass indexer, Facebook/Twitter/LinkedIn social card scrapers, GPTBot, ClaudeBot, PerplexityBot — see the real per-route `<title>`, `<meta description>`, `<link rel="canonical">`, OG tags, JSON-LD, BylineMeta, and rendered editorial content (lead, h2 hierarchy, pair intros, FAQ) in the initial HTML response. The SPA hydrates on top with zero "Hydration failed" or "Text content did not match" console warnings on the test trio (`/`, `/usd-to-brl`, `/guides/currency-conversion-fees-compared`). Cloudflare's SPA fallback (`assets.not_found_handling: "single-page-application"`) is preserved for unmatched URLs (e.g. the 400+ non-curated pair URLs not in PAIR_PROFILES).
+**Mode:** standard (structural fix, not a feature MVP)
 **Depends on:** Phase 3
-**Plans:** 0 plans
+**Requirements:** SSG-01, SSG-02, SSG-03, SSG-04, SSG-05
+**Success Criteria** (what must be TRUE):
+
+  1. Every URL in `public/sitemap.xml` has a corresponding `dist/<route>/index.html` after `npm run build`
+  2. Initial HTML for `/`, `/usd-to-brl`, `/guides/currency-conversion-fees-compared` carries route-specific `<title>`, `<meta description>`, `<link rel="canonical">`, OG tags, JSON-LD schema, and rendered editorial content — not the home-page values
+  3. `npm run build` exits 0 with no hydration warning emitted by the pre-render pass; `wrangler dev` serves both pre-rendered routes and SPA-fallback routes
+  4. Zero "Hydration failed" or "Text content did not match" console errors on the test trio (verified manually in Chrome DevTools per the human-check step in the plan)
+  5. AdSense consent gate, AdSlot rendering, cookie banner UX, `STORAGE_KEY`, `AD_SLOTS`, `ADSENSE_CLIENT_ID`, `NO_AD_ROUTES`, `isAdAllowedOnRoute` byte-identical to their post-03-02 state (PERF-05 from Phase 3 preserved)
+
+**Plans:** 1 plan
 
 Plans:
-- [ ] TBD (run /gsd-plan-phase 03.1 to break down)
+
+- [ ] 03.1-01-PLAN.md — Install `vite-react-ssg` (the single approved dev dep), refactor to ssg-entry/main bootstrap, add SSR-safe guards to I18n/Theme/exchangeRate/Layout, expand sitemap to cover every PAIR_PROFILES key, run build + audit per-route output, verify hydration on the test trio
 
 ### Phase 4: Glossary popovers
 
@@ -167,3 +177,4 @@ Plans:
 
 ---
 *Created: 2026-05-19 after research synthesis*
+*Phase 03.1 inserted 2026-05-22 after AdSense "low value content" recusal of 2026-05-17 and SEO audit C-1 finding*
