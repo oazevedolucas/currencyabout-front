@@ -4,8 +4,16 @@ const STORAGE_KEY = 'currencyabout_theme'
 const ThemeContext = createContext(null)
 
 function detectTheme() {
-  const saved = localStorage.getItem(STORAGE_KEY)
-  if (saved === 'light' || saved === 'dark') return saved
+  // SSR / build-time: no localStorage, no matchMedia. Return 'light' to match
+  // the index.html baseline (<html data-theme="light">) so renderToString
+  // and the hydrated client agree on the initial theme attribute.
+  if (typeof window === 'undefined') return 'light'
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved === 'light' || saved === 'dark') return saved
+  } catch {
+    // ignore — storage blocked
+  }
   return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
@@ -21,7 +29,13 @@ export function ThemeProvider({ children }) {
   const toggleTheme = useCallback(() => {
     setTheme((prev) => {
       const next = prev === 'dark' ? 'light' : 'dark'
-      localStorage.setItem(STORAGE_KEY, next)
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem(STORAGE_KEY, next)
+        } catch {
+          // ignore — storage blocked
+        }
+      }
       return next
     })
   }, [])

@@ -12,10 +12,18 @@ export const locales = { en, pt, es, fr, de, zh, ja }
 const STORAGE_KEY = 'currencyabout_lang'
 
 function detectLanguage() {
-  const saved = localStorage.getItem(STORAGE_KEY)
-  if (saved && locales[saved]) return saved
+  // SSR / build-time: no localStorage, no navigator. Return the deterministic
+  // 'en' baseline so renderToString matches the post-hydration default and
+  // the single-URL i18n strategy keeps the same lang attribute everywhere.
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') return 'en'
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved && locales[saved]) return saved
+  } catch {
+    // ignore — storage blocked / private mode
+  }
 
-  const browserLang = navigator.language?.slice(0, 2)
+  const browserLang = typeof navigator !== 'undefined' ? navigator.language?.slice(0, 2) : null
   if (browserLang && locales[browserLang]) return browserLang
 
   return 'en'
@@ -28,8 +36,15 @@ export function I18nProvider({ children }) {
 
   const changeLang = useCallback((code) => {
     setLang(code)
-    localStorage.setItem(STORAGE_KEY, code)
-    document.documentElement.lang = code
+    if (typeof window === 'undefined') return
+    try {
+      localStorage.setItem(STORAGE_KEY, code)
+    } catch {
+      // ignore — storage blocked
+    }
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = code
+    }
   }, [])
 
   const t = useMemo(() => locales[lang] || locales.en, [lang])

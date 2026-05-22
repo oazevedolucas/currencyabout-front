@@ -7,6 +7,13 @@ import { useAdSenseLoader } from '../../hooks/useAdSenseLoader.js'
 import { POPULAR_PAIRS, pairUrl } from '../../seo/seoContent.js'
 import './Layout.css'
 
+// Module-level constant so the footer copyright is deterministic across
+// SSR / build-time render and client hydration. Using new Date().getFullYear()
+// at render time would diverge between the build clock and the client clock
+// (and could disagree around new-year boundaries), producing a hydration
+// mismatch warning. Bump manually each January.
+const FOOTER_YEAR = 2026
+
 export function Layout({ children }) {
   const { t } = useI18n()
   useAdSenseLoader()
@@ -101,7 +108,7 @@ export function Layout({ children }) {
             <p className="footer__disclaimer">
               {t.seo?.disclaimer || 'Exchange rates are provided for informational purposes only. Rates are updated daily and may differ from actual market rates.'}
             </p>
-            <p className="footer__copy">&copy; {new Date().getFullYear()} About Currency</p>
+            <p className="footer__copy">&copy; {FOOTER_YEAR} About Currency</p>
           </div>
         </footer>
       </div>
