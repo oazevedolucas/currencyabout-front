@@ -12,10 +12,9 @@
 // what react-helmet-async needs to collect per-route <title>, <meta>, and
 // <link> tags into initial HTML during the build's renderToString pass.
 
-import React, { lazy, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { ViteReactSSG } from 'vite-react-ssg'
-import { HelmetProvider } from 'react-helmet-async'
 import { I18nProvider } from './i18n/I18nContext.jsx'
 import { ThemeProvider } from './theme/ThemeContext.jsx'
 import { Layout } from './components/Layout/Layout.jsx'
@@ -28,22 +27,31 @@ import './App.css'
 import './pages/pages.css'
 import './index.css'
 
-// Parent route element: mounts the provider stack and the Layout shell,
-// then renders the matched child page via <Outlet />. Suspense covers
-// lazy-loaded children (legal / guides routes).
+// Parent route element: mounts the (Theme + I18n) provider stack and the
+// Layout shell, then renders the matched child page via <Outlet />.
+// Suspense covers lazy-loaded children (legal / guides routes).
+//
+// HelmetProvider is intentionally NOT mounted here. vite-react-ssg wraps
+// the rendered tree with its own <HelmetProvider context={helmetContext}>
+// at build time so the plugin can extract helmet.title/.meta/.link and
+// inject them into the <head> of the per-route dist/<route>/index.html.
+// A nested HelmetProvider would capture <Helmet> calls into its own
+// context and leak them as literal JSX nodes inside <div id="root">
+// instead of into the document head -- which would be invisible to
+// non-rendering crawlers and defeat the whole pre-render. On the client,
+// the plugin's bootstrap also mounts HelmetProvider above the router so
+// react-helmet-async still works for runtime title updates.
 function LayoutOutlet() {
   return (
-    <HelmetProvider>
-      <ThemeProvider>
-        <I18nProvider>
-          <Layout>
-            <Suspense fallback={<RouteSkeleton />}>
-              <Outlet />
-            </Suspense>
-          </Layout>
-        </I18nProvider>
-      </ThemeProvider>
-    </HelmetProvider>
+    <ThemeProvider>
+      <I18nProvider>
+        <Layout>
+          <Suspense fallback={<RouteSkeleton />}>
+            <Outlet />
+          </Suspense>
+        </Layout>
+      </I18nProvider>
+    </ThemeProvider>
   )
 }
 
