@@ -116,11 +116,11 @@ Plans:
   4. Zero "Hydration failed" or "Text content did not match" console errors on the test trio (verified manually in Chrome DevTools per the human-check step in the plan)
   5. AdSense consent gate, AdSlot rendering, cookie banner UX, `STORAGE_KEY`, `AD_SLOTS`, `ADSENSE_CLIENT_ID`, `NO_AD_ROUTES`, `isAdAllowedOnRoute` byte-identical to their post-03-02 state (PERF-05 from Phase 3 preserved)
 
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 
-- [ ] 03.1-01-PLAN.md — Install `vite-react-ssg` (the single approved dev dep), refactor to ssg-entry/main bootstrap, add SSR-safe guards to I18n/Theme/exchangeRate/Layout, expand sitemap to cover every PAIR_PROFILES key, run build + audit per-route output, verify hydration on the test trio
+- [x] 03.1-01-PLAN.md — Install `vite-react-ssg` (the single approved dev dep), refactor to ssg-entry/main bootstrap, add SSR-safe guards to I18n/Theme/exchangeRate/Layout, expand sitemap to cover every PAIR_PROFILES key, run build + audit per-route output, verify hydration on the test trio
 
 ### Phase 4: Glossary popovers
 
