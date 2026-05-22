@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-05-21T13:35:57.451Z"
+last_updated: "2026-05-22T13:13:37.135Z"
 last_activity: 2026-05-21 -- Phase 03 execution started
 progress:
-  total_phases: 5
+  total_phases: 6
   completed_phases: 2
-  total_plans: 7
-  completed_plans: 5
-  percent: 40
+  total_plans: 8
+  completed_plans: 7
+  percent: 33
 ---
 
 # Project State
@@ -20,14 +20,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-19)
 
 **Core value:** Maximize AdSense approval odds during the active review window without introducing visible breakage
-**Current focus:** Phase 03 — performance-core-web-vitals
+**Current focus:** Phase 03.1 — SSG / pre-render (URGENT, inserted after AdSense "low value content" recusal 2026-05-17)
 
 ## Current Position
 
-Phase: 03 (performance-core-web-vitals) — EXECUTING
-Plan: 1 of 2
-Status: Executing Phase 03
-Last activity: 2026-05-21 -- Phase 03 execution started
+Phase: 03.1 (ssg-pre-render) — PLANNED (URGENT, inserted 2026-05-22)
+Last completed: 03 (performance-core-web-vitals) — closed 2026-05-21 with inferred PASS (T4/T6 Lighthouse measurement waived by user)
+Next recommended run: /gsd:plan-phase 03.1
+Last activity: 2026-05-22 -- Phase 03.1 inserted after AdSense recused with "low value content" (see Roadmap Evolution)
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -53,6 +53,10 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion.*
 
 ## Accumulated Context
+
+### Roadmap Evolution
+
+- Phase 03.1 inserted after Phase 3: SSG / pre-render — per-route HTML for non-rendering crawlers (URGENT)
 
 ### Decisions
 

@@ -102,6 +102,16 @@ Plans:
 - [x] 03-01: Bundle split — `React.lazy` per route in `App.jsx` (keep `HomePage`/`Layout` eager), `manualChunks` in `vite.config.js` for react/react-router/helmet vendor splits, lazy `guides.js`
 - [ ] 03-02: AdSlot reserved-height + CWV validation — `AD_SLOTS_HEIGHTS` map on `<AdSlot />`, Lighthouse + PageSpeed Insights pass at mobile profile, no regression to AdSense loader
 
+### Phase 03.1: SSG / pre-render — per-route HTML for non-rendering crawlers (INSERTED)
+
+**Goal:** [Urgent work - to be planned]
+**Requirements**: TBD
+**Depends on:** Phase 3
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd-plan-phase 03.1 to break down)
+
 ### Phase 4: Glossary popovers
 
 **Goal:** Deepen the editorial signal with click-triggered native popovers explaining ~10–15 finance terms, cross-linked to guides — without introducing layout shift or new dependencies.
