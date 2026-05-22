@@ -6,6 +6,7 @@ function getTodayDate() {
 }
 
 function readCache() {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') return null
   try {
     const raw = localStorage.getItem(CACHE_KEY)
     if (!raw) return null
@@ -20,11 +21,24 @@ function readCache() {
 }
 
 function writeCache(rates) {
-  const data = { date: getTodayDate(), rates, timestamp: Date.now() }
-  localStorage.setItem(CACHE_KEY, JSON.stringify(data))
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') return
+  try {
+    const data = { date: getTodayDate(), rates, timestamp: Date.now() }
+    localStorage.setItem(CACHE_KEY, JSON.stringify(data))
+  } catch {
+    // ignore — private-mode browsers / storage blocked
+  }
 }
 
 export async function fetchRates() {
+  // SSR / build-time short-circuit: never contact the rates API during
+  // vite-react-ssg's renderToString pass. Returning an empty payload
+  // matches how the converter renders before its first client fetch
+  // (loading state), so hydration finds the same shell on both sides.
+  if (typeof window === 'undefined') {
+    return { rates: {}, fromCache: false, date: '' }
+  }
+
   const cached = readCache()
   if (cached) {
     return { rates: cached.rates, fromCache: true, date: cached.date }
