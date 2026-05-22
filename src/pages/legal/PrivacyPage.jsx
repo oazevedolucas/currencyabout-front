@@ -23,7 +23,7 @@ export function PrivacyPage() {
         { label: 'Privacy Policy' },
       ]} />
 
-      <div className="legal-page__meta">Last updated: April 20, 2026</div>
+      <div className="legal-page__meta">Last updated: May 22, 2026</div>
       <h1>Privacy Policy</h1>
 
       <p className="legal-page__lead">
