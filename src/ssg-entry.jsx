@@ -12,13 +12,12 @@
 // what react-helmet-async needs to collect per-route <title>, <meta>, and
 // <link> tags into initial HTML during the build's renderToString pass.
 
-import React, { Suspense } from 'react'
+import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { ViteReactSSG } from 'vite-react-ssg'
 import { I18nProvider } from './i18n/I18nContext.jsx'
 import { ThemeProvider } from './theme/ThemeContext.jsx'
 import { Layout } from './components/Layout/Layout.jsx'
-import { RouteSkeleton } from './components/RouteSkeleton/RouteSkeleton.jsx'
 import { HomePage } from './pages/HomePage.jsx'
 import { CurrencyPairPage } from './pages/CurrencyPairPage.jsx'
 import { ExchangeRatesTodayPage } from './pages/ExchangeRatesTodayPage.jsx'
@@ -29,7 +28,10 @@ import './index.css'
 
 // Parent route element: mounts the (Theme + I18n) provider stack and the
 // Layout shell, then renders the matched child page via <Outlet />.
-// Suspense covers lazy-loaded children (legal / guides routes).
+// No <Suspense> around <Outlet />: lazy routes resolve through react-router's
+// `lazy` (before render), so nothing suspends, and a boundary makes React 19
+// outline large pages into a hidden <div id="S:0"> moved in by script, which
+// keeps the main content out of the static HTML for non-rendering crawlers.
 //
 // HelmetProvider is intentionally NOT mounted here. vite-react-ssg wraps
 // the rendered tree with its own <HelmetProvider context={helmetContext}>
@@ -46,9 +48,7 @@ function LayoutOutlet() {
     <ThemeProvider>
       <I18nProvider>
         <Layout>
-          <Suspense fallback={<RouteSkeleton />}>
-            <Outlet />
-          </Suspense>
+          <Outlet />
         </Layout>
       </I18nProvider>
     </ThemeProvider>
