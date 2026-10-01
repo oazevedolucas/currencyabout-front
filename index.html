@@ -42,6 +42,23 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icons/icon-192.png" />
     <meta name="theme-color" content="#4ade80" />
+    <!-- Apply the saved / system theme before first paint. Pages are
+         prerendered in light mode, so without this dark-mode visitors see a
+         light flash until React hydrates. Mirrors detectTheme() in
+         src/theme/ThemeContext.jsx. -->
+    <script>
+      (function () {
+        var theme = 'light'
+        try {
+          var saved = localStorage.getItem('currencyabout_theme')
+          if (saved === 'light' || saved === 'dark') theme = saved
+          else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark'
+        } catch (e) {
+          // ignore — storage blocked
+        }
+        document.documentElement.setAttribute('data-theme', theme)
+      })()
+    </script>
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />

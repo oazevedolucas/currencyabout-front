@@ -66,7 +66,27 @@ const lazyComp = (loader) => async () => {
   return { Component: mod.default || (first ? mod[first] : undefined) }
 }
 
-export const routes = [
+// Hydration fix for vite-react-ssg 0.9 + react-router 7. On the client the
+// plugin attaches a static-data `loader` to every route and builds the
+// router without passing hydration data, so react-router only hydrates
+// synchronously when window.__staticRouterHydrationData.loaderData already
+// holds an entry for each matched route id. Without loaders at build time
+// that object is `{}`, the router treats the page as not yet loaded, renders
+// nothing during hydration ("No HydrateFallback element" warning), and React
+// ends up appending a second client-rendered copy of the app next to the
+// prerendered one. A no-op loader on every route makes the build emit
+// `null` entries for each id, so hydration adopts the prerendered markup.
+const nullLoader = () => null
+
+function withNullLoaders(routeList) {
+  return routeList.map((route) => ({
+    ...route,
+    loader: nullLoader,
+    ...(route.children ? { children: withNullLoaders(route.children) } : {}),
+  }))
+}
+
+export const routes = withNullLoaders([
   {
     path: '/',
     element: <LayoutOutlet />,
@@ -95,7 +115,7 @@ export const routes = [
       { path: '*', Component: NotFoundPage },
     ],
   },
-]
+])
 
 // ViteReactSSG bootstrap. Named export `createRoot` is the convention the
 // plugin's CLI discovers from the entry file (src/main.jsx re-exports it).
