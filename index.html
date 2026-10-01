@@ -52,7 +52,10 @@
       added to <head> after a visitor accepts cookies via CookieConsent, and
       no <AdSlot /> renders without consent. Do not re-add a static <script>
       tag here — it would defeat the consent gate.
+      The meta tag below is AdSense's site-ownership check: it sets no
+      cookies and loads nothing, so it is safe to ship before consent.
     -->
+    <meta name="google-adsense-account" content="ca-pub-3917556333305409" />
 
     <!-- Performance: Preconnect & Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
