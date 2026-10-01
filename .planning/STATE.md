@@ -28,7 +28,7 @@ Phase: 03.1 — COMPLETE
 Plan: 1 of 1
 Last completed: 03 (performance-core-web-vitals) — closed 2026-05-21 with inferred PASS (T4/T6 Lighthouse measurement waived by user)
 Next recommended run: /gsd:plan-phase 03.1
-Last activity: 2026-10-01 - Completed quick task 261001-ds0: AdSense technical fixes (verification meta, flat SSG URLs, hydration + zero-rate fixes, real 404)
+Last activity: 2026-10-01 - Completed quick task 261001-f0q: content audit fixes (noindex unprofiled pairs, inline SSR, pair-specific content)
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -80,6 +80,7 @@ No pending todos. Decisions and constraints are captured in PROJECT.md and ROADM
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 261001-ds0 | AdSense technical fixes: verification meta, flat SSG URLs, hydration + zero-rate fixes, real 404 | 2026-10-01 | 0a43989 | [261001-ds0-adsense-technical-fixes-prerender-404-cm](./quick/261001-ds0-adsense-technical-fixes-prerender-404-cm/) |
+| 261001-f0q | Content audit fixes: noindex unprofiled pairs, inline SSR content, pair-specific details for 38 pairs | 2026-10-01 | 94f6be1 | [261001-f0q-content-audit-fixes-noindex-unprofiled-p](./quick/261001-f0q-content-audit-fixes-noindex-unprofiled-p/) |
 
 ### Research Artifacts
 
