@@ -86,7 +86,9 @@ export function getPairSeo(fromCode, toCode, fromName, toName, rate, t) {
     .replace(/{fromName}/g, fromName)
     .replace(/{toName}/g, toName)
 
-  const description = descTemplate
+  // Without a rate (prerendered HTML), drop the "1 {from} = {rate} {to}."
+  // sentence instead of publishing a zero rate.
+  const description = (rate ? descTemplate : descTemplate.replace(/\s*[^.。\s][^.。]*\{rate\}[^.。]*[.。]/, ''))
     .replace(/{from}/g, fromCode)
     .replace(/{to}/g, toCode)
     .replace(/{fromName}/g, fromName)

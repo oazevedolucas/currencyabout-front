@@ -20,11 +20,13 @@ import { getPairIntro } from '../content/pairProfiles.js'
 import { NotFoundPage } from './NotFoundPage.jsx'
 
 function formatRateDisplay(rate) {
+  if (!rate) return '—'
   if (rate >= 100) return rate.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   return rate.toLocaleString('en', { minimumFractionDigits: 4, maximumFractionDigits: 4 })
 }
 
 function formatAmount(value) {
+  if (!value) return '—'
   if (value >= 1000) return value.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   return value.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 4 })
 }
@@ -57,8 +59,12 @@ export function CurrencyPairPage() {
 
   const fromName = t.currencies[fromCode] || fromMeta.name
   const toName = t.currencies[toCode] || toMeta.name
+  // The prerendered HTML has no rates (the API is only called in the
+  // browser), so every rate-bearing sentence needs a rate-free variant:
+  // crawlers must never read "1 USD = 0.0000 EUR" as a fact.
+  const hasRate = rate > 0
   const rateStr = formatRateDisplay(rate)
-  const seo = getPairSeo(fromCode, toCode, fromName, toName, rateStr, t)
+  const seo = getPairSeo(fromCode, toCode, fromName, toName, hasRate ? rateStr : '', t)
   const indexable = isIndexablePair(fromCode, toCode)
 
   if (converter.loading) {
@@ -87,7 +93,9 @@ export function CurrencyPairPage() {
   const faqQuestions = [
     {
       question: `What is the current ${fromCode} to ${toCode} exchange rate?`,
-      answer: `The current mid-market rate is 1 ${fromCode} = ${rateStr} ${toCode} (as of ${converter.rateDate}). This is a reference rate — the rate you actually receive from a bank, card, or transfer service will typically include a spread of 0.3%–3% above this.`,
+      answer: `${hasRate
+        ? `The current mid-market rate is 1 ${fromCode} = ${rateStr} ${toCode} (as of ${converter.rateDate}).`
+        : `The live mid-market rate is shown at the top of this page and refreshes daily.`} This is a reference rate — the rate you actually receive from a bank, card, or transfer service will typically include a spread of 0.3%–3% above this.`,
     },
     {
       question: `How do I convert ${fromName} to ${toName}?`,
@@ -99,11 +107,13 @@ export function CurrencyPairPage() {
     },
     {
       question: `Can I convert ${toCode} back to ${fromCode}?`,
-      answer: `Yes — visit our ${toCode} to ${fromCode} page for the reverse direction. At today's rate, 1 ${toCode} is worth about ${formatRateDisplay(reverseRate)} ${fromCode}.`,
+      answer: `Yes — visit our ${toCode} to ${fromCode} page for the reverse direction.${hasRate ? ` At today's rate, 1 ${toCode} is worth about ${formatRateDisplay(reverseRate)} ${fromCode}.` : ''}`,
     },
     {
       question: `How much is 100 ${fromCode} in ${toCode}?`,
-      answer: `At the current rate, 100 ${fromCode} equals approximately ${formatAmount(100 * rate)} ${toCode}. The quick-reference table on this page shows other common amounts from 1 to 10,000 ${fromCode}.`,
+      answer: `${hasRate
+        ? `At the current rate, 100 ${fromCode} equals approximately ${formatAmount(100 * rate)} ${toCode}.`
+        : `Multiply 100 by the current ${fromCode}/${toCode} rate, or type 100 into the converter above.`} The quick-reference table on this page shows other common amounts from 1 to 10,000 ${fromCode}.`,
     },
     {
       question: `Why is the rate on my card different from what's shown here?`,
@@ -118,7 +128,7 @@ export function CurrencyPairPage() {
         { name: 'Home', url: SITE_URL },
         { name: `${fromCode} to ${toCode}`, url: `${SITE_URL}${pairUrl(fromCode, toCode)}` },
       ]} />
-      {indexable && <CurrencyPairSchema from={fromMeta} to={toMeta} rate={rate} date={converter.rateDate} />}
+      {indexable && hasRate && converter.rateDate && <CurrencyPairSchema from={fromMeta} to={toMeta} rate={rate} date={converter.rateDate} />}
       {indexable && <CurrencyConversionServiceSchema fromCode={fromCode} toCode={toCode} fromName={fromName} toName={toName} />}
 
       <Breadcrumbs items={[
@@ -213,14 +223,25 @@ export function CurrencyPairPage() {
         <p>
           Whether you are planning a trip, paying an international invoice, sending money to family,
           or pricing an imported product, understanding the {fromCode}/{toCode} exchange rate helps
-          you avoid surprises. At today's mid-market rate of <strong>1 {fromCode} = {rateStr} {toCode}</strong>,
-          {' '}{fromCode === toCode ? 'the currencies are identical' : `every ${fromCode} you convert will yield about ${formatAmount(rate)} ${toCode}`}
-          {' '}— before any fees or spread your payment provider adds.
+          you avoid surprises.
+          {hasRate ? (
+            <>
+              {' '}At today's mid-market rate of <strong>1 {fromCode} = {rateStr} {toCode}</strong>,
+              {' '}{fromCode === toCode ? 'the currencies are identical' : `every ${fromCode} you convert will yield about ${formatAmount(rate)} ${toCode}`}
+              {' '}— before any fees or spread your payment provider adds.
+            </>
+          ) : (
+            <>
+              {' '}The converter above applies today's mid-market rate, before any fees or spread your payment provider adds.
+            </>
+          )}
         </p>
 
         <h3>Reverse direction: {toCode} to {fromCode}</h3>
         <p>
-          Converting the other way, <strong>1 {toCode} = {formatRateDisplay(reverseRate)} {fromCode}</strong>.
+          {hasRate
+            ? <>Converting the other way, <strong>1 {toCode} = {formatRateDisplay(reverseRate)} {fromCode}</strong>. </>
+            : 'Converting the other way uses the inverse of the same rate. '}
           For the reverse-direction converter, see the dedicated <Link to={pairUrl(toCode, fromCode)}>{toCode} to {fromCode}</Link> page.
         </p>
 
