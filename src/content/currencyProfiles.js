@@ -7,15 +7,15 @@ export const CURRENCY_PROFILES = {
     centralBank: 'Federal Reserve System',
     subunit: '1 dollar = 100 cents',
     rank: 'world reserve currency',
-    about: 'The US dollar is the most traded currency on Earth, appearing on one side of roughly 88% of all foreign-exchange trades. It anchors global trade in commodities like oil and gold, and makes up more than 58% of official foreign-exchange reserves. When investors seek safety during global uncertainty, they typically move into dollars — a pattern known as a "flight to quality".',
+    about: 'The US dollar is the most traded currency on Earth, appearing on one side of roughly 89% of all foreign-exchange trades. It anchors global trade in commodities like oil and gold, and makes up more than 58% of official foreign-exchange reserves. When investors seek safety during global uncertainty, they typically move into dollars — a pattern known as a "flight to quality".',
     usage: 'Beyond the United States, the dollar is legal tender or a widely accepted parallel currency in countries such as Ecuador, El Salvador, Panama, Zimbabwe, and several Caribbean nations. Many emerging-market economies quote property, luxury goods, and international contracts directly in USD.',
   },
   EUR: {
-    country: 'European Union (20 eurozone members)',
+    country: 'European Union (21 eurozone members)',
     centralBank: 'European Central Bank (ECB)',
     subunit: '1 euro = 100 cents',
     rank: '2nd most-traded currency',
-    about: 'Introduced in 1999 for accounting and 2002 as physical cash, the euro is the single currency shared by 20 European Union member states. It is the second largest reserve currency after the dollar, making up about 20% of global foreign-exchange reserves. The EUR/USD pair is the single most actively traded currency pair in the world.',
+    about: 'Introduced in 1999 for accounting and 2002 as physical cash, the euro is the single currency shared by 21 European Union member states. It is the second largest reserve currency after the dollar, making up about 20% of global foreign-exchange reserves. The EUR/USD pair is the single most actively traded currency pair in the world.',
     usage: 'Inside the eurozone, the euro eliminates conversion costs between member states. Non-euro EU countries such as Denmark, Sweden, Poland, and Czechia still use their own currencies, so travelers should check before assuming "Europe" means euros.',
   },
   GBP: {
