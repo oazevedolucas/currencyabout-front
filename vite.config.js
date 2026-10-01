@@ -85,7 +85,7 @@ export default defineConfig({
   ssgOptions: {
     entry: 'src/main.jsx',
     script: 'defer',
-    dirStyle: 'nested',
+    dirStyle: 'flat',
     mock: true,
     formatting: 'none',
     includedRoutes: async () => {
