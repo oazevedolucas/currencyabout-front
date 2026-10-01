@@ -16,7 +16,7 @@ import { AdSlot } from '../components/AdSlot/AdSlot.jsx'
 import { AD_SLOTS } from '../constants/adsense.js'
 import { useCurrencyConverter } from '../hooks/useCurrencyConverter.js'
 import { getProfile } from '../content/currencyProfiles.js'
-import { getPairIntro } from '../content/pairProfiles.js'
+import { getPairIntro, getPairDetails } from '../content/pairProfiles.js'
 import { NotFoundPage } from './NotFoundPage.jsx'
 
 function formatRateDisplay(rate) {
@@ -32,6 +32,65 @@ function formatAmount(value) {
 }
 
 const QUICK_AMOUNTS = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000]
+
+const CURRENCY_GUIDES = {
+  USD: '/guides/understanding-us-dollar',
+  EUR: '/guides/understanding-euro',
+}
+
+function currencyGuide(code) {
+  return CURRENCY_GUIDES[code] || '/guides/major-world-currencies'
+}
+
+function CurrencyFacts({ code, name, profile }) {
+  return (
+    <li>
+      <strong>{name} ({code}):</strong> {profile.country}. Central bank: {profile.centralBank}.
+      {' '}Subunit: {profile.subunit}. Global rank: {profile.rank}.
+      {' '}<Link to={currencyGuide(code)}>More about the {name}</Link>
+    </li>
+  )
+}
+
+// Pair-specific body for pairs with an entry in PAIR_DETAILS. Shared
+// explanations (spreads, timing, use cases) live in the guides and are linked
+// rather than repeated, so most of this section's text is unique to the pair.
+function PairDetailSections({ details, fromCode, toCode, fromName, toName, fromProfile, toProfile }) {
+  return (
+    <>
+      <h3>What moves the {fromCode}/{toCode} rate</h3>
+      <ul>
+        {details.drivers.map((driver) => <li key={driver.slice(0, 40)}>{driver}</li>)}
+      </ul>
+
+      <h3>Before you convert {fromCode} to {toCode}</h3>
+      <ul>
+        {details.notes.map((note) => (
+          <li key={note.term}><strong>{note.term}:</strong> {note.text}</li>
+        ))}
+      </ul>
+
+      {(fromProfile || toProfile) && (
+        <>
+          <h3>Key facts</h3>
+          <ul>
+            {fromProfile && <CurrencyFacts code={fromCode} name={fromName} profile={fromProfile} />}
+            {toProfile && <CurrencyFacts code={toCode} name={toName} profile={toProfile} />}
+          </ul>
+        </>
+      )}
+
+      <h3>Mid-market rate vs. the rate you will pay</h3>
+      <p>
+        The rate on this page is the mid-market rate, the midpoint between the interbank bid and ask.
+        Banks, card networks and transfer services all add a spread or a fee on top of it. Our guides
+        compare <Link to="/guides/currency-conversion-fees-compared">what each type of provider charges</Link>,
+        explain <Link to="/guides/bid-ask-spread-in-forex">how the bid-ask spread works</Link>, and
+        cover <Link to="/guides/best-time-to-exchange-currency">whether timing a conversion pays off</Link>.
+      </p>
+    </>
+  )
+}
 
 export function CurrencyPairPage() {
   const { pair } = useParams()
@@ -89,6 +148,7 @@ export function CurrencyPairPage() {
   const toProfile = getProfile(toCode)
   const reverseRate = rate > 0 ? 1 / rate : 0
   const pairIntro = getPairIntro(fromCode, toCode)
+  const details = getPairDetails(fromCode, toCode)
 
   const faqQuestions = [
     {
@@ -97,14 +157,14 @@ export function CurrencyPairPage() {
         ? `The current mid-market rate is 1 ${fromCode} = ${rateStr} ${toCode} (as of ${converter.rateDate}).`
         : `The live mid-market rate is shown at the top of this page and refreshes daily.`} This is a reference rate — the rate you actually receive from a bank, card, or transfer service will typically include a spread of 0.3%–3% above this.`,
     },
-    {
+    ...(details ? details.faq : [{
       question: `How do I convert ${fromName} to ${toName}?`,
       answer: `Enter the amount in ${fromCode} in the input field above. The converter instantly multiplies your amount by today's rate to show the equivalent value in ${toCode}. For large conversions, also compare the rate offered by your actual payment provider.`,
     },
     {
       question: `Is the ${fromCode}/${toCode} rate live?`,
       answer: `Rates are pulled from a reliable exchange-rate data source and refreshed daily. They are cached in your browser for the day for performance. For second-by-second market rates used by traders, you would need a professional data feed.`,
-    },
+    }]),
     {
       question: `Can I convert ${toCode} back to ${fromCode}?`,
       answer: `Yes — visit our ${toCode} to ${fromCode} page for the reverse direction.${hasRate ? ` At today's rate, 1 ${toCode} is worth about ${formatRateDisplay(reverseRate)} ${fromCode}.` : ''}`,
@@ -221,19 +281,14 @@ export function CurrencyPairPage() {
         {pairIntro && <p className="seo-content__intro">{pairIntro}</p>}
         <h2>Converting {fromName} ({fromCode}) to {toName} ({toCode})</h2>
         <p>
-          Whether you are planning a trip, paying an international invoice, sending money to family,
-          or pricing an imported product, understanding the {fromCode}/{toCode} exchange rate helps
-          you avoid surprises.
           {hasRate ? (
             <>
-              {' '}At today's mid-market rate of <strong>1 {fromCode} = {rateStr} {toCode}</strong>,
-              {' '}{fromCode === toCode ? 'the currencies are identical' : `every ${fromCode} you convert will yield about ${formatAmount(rate)} ${toCode}`}
-              {' '}— before any fees or spread your payment provider adds.
+              At today's mid-market rate of <strong>1 {fromCode} = {rateStr} {toCode}</strong>,
+              {' '}{fromCode === toCode ? 'the currencies are identical' : `every ${fromCode} you convert will yield about ${formatAmount(rate)} ${toCode}`},
+              {' '}before any fees or spread your payment provider adds.
             </>
           ) : (
-            <>
-              {' '}The converter above applies today's mid-market rate, before any fees or spread your payment provider adds.
-            </>
+            'The converter above applies today\'s mid-market rate, before any fees or spread your payment provider adds.'
           )}
         </p>
 
@@ -245,78 +300,93 @@ export function CurrencyPairPage() {
           For the reverse-direction converter, see the dedicated <Link to={pairUrl(toCode, fromCode)}>{toCode} to {fromCode}</Link> page.
         </p>
 
-        {fromProfile && (
+        {details ? (
+          <PairDetailSections
+            details={details}
+            fromCode={fromCode}
+            toCode={toCode}
+            fromName={fromName}
+            toName={toName}
+            fromProfile={fromProfile}
+            toProfile={toProfile}
+          />
+        ) : (
           <>
-            <h3>About the {fromName} ({fromCode})</h3>
+            {fromProfile && (
+              <>
+                <h3>About the {fromName} ({fromCode})</h3>
+                <p>
+                  <strong>Country:</strong> {fromProfile.country}. <strong>Central bank:</strong> {fromProfile.centralBank}.
+                  {' '}<strong>Subunit:</strong> {fromProfile.subunit}. <strong>Global rank:</strong> {fromProfile.rank}.
+                </p>
+                <p>{fromProfile.about}</p>
+                <p><strong>Where it's used:</strong> {fromProfile.usage}</p>
+              </>
+            )}
+
+            {toProfile && (
+              <>
+                <h3>About the {toName} ({toCode})</h3>
+                <p>
+                  <strong>Country:</strong> {toProfile.country}. <strong>Central bank:</strong> {toProfile.centralBank}.
+                  {' '}<strong>Subunit:</strong> {toProfile.subunit}. <strong>Global rank:</strong> {toProfile.rank}.
+                </p>
+                <p>{toProfile.about}</p>
+                <p><strong>Where it's used:</strong> {toProfile.usage}</p>
+              </>
+            )}
+
+            <h3>Typical use cases for {fromCode} → {toCode}</h3>
+            <ul>
+              <li><strong>Travel:</strong> budgeting a trip, converting cash before departure, or understanding prices while on the ground.</li>
+              <li><strong>Online shopping:</strong> comparing a foreign-currency price against what your home card or wallet will actually charge.</li>
+              <li><strong>Remittances:</strong> estimating how much will land when sending money to family or friends abroad.</li>
+              <li><strong>Freelance and contract work:</strong> invoicing in one currency while the payer settles in another.</li>
+              <li><strong>Property, tuition, or medical costs abroad:</strong> planning large one-off payments.</li>
+            </ul>
+
+            <h3>Mid-market rate vs. the rate you'll actually pay</h3>
             <p>
-              <strong>Country:</strong> {fromProfile.country}. <strong>Central bank:</strong> {fromProfile.centralBank}.
-              {' '}<strong>Subunit:</strong> {fromProfile.subunit}. <strong>Global rank:</strong> {fromProfile.rank}.
+              The rate shown here is the <strong>mid-market rate</strong> — the midpoint between the global
+              interbank bid and ask. No consumer actually transacts at this rate. Every provider adds a
+              spread or fee to cover its costs and profit:
             </p>
-            <p>{fromProfile.about}</p>
-            <p><strong>Where it's used:</strong> {fromProfile.usage}</p>
+            <ul>
+              <li><strong>Banks:</strong> typically add 2%–4% plus a flat fee on international transfers.</li>
+              <li><strong>Credit and debit cards abroad:</strong> typically 1%–3% total, depending on issuer and network.</li>
+              <li><strong>Airport exchange kiosks:</strong> often 5%–12% worse than mid-market — the most expensive option.</li>
+              <li><strong>Online remittance specialists:</strong> usually 0.3%–1.5% all-in, often the best option for medium amounts.</li>
+            </ul>
+            <p>
+              To estimate the real cost of a conversion, multiply your amount by the mid-market rate
+              shown here, then subtract your provider's fee and the margin they charge on the rate.
+              For deeper guidance, see our guide on <Link to="/guides/sending-money-abroad">how to send money abroad</Link>.
+            </p>
+
+            <h3>What moves the {fromCode}/{toCode} rate</h3>
+            <p>
+              Day-to-day changes in {fromCode}/{toCode} are typically driven by relative interest rates
+              at {fromProfile?.centralBank || `${fromCode}'s central bank`} and
+              {' '}{toProfile?.centralBank || `${toCode}'s central bank`}, inflation data in both countries,
+              and the broader global risk environment. Larger swings tend to coincide with policy
+              announcements, political events, or unexpected economic data. To read more about what
+              drives FX rates generally, see our guide on
+              {' '}<Link to="/guides/how-exchange-rates-work">how exchange rates work</Link>.
+            </p>
+
+            <h3>Can I time this conversion?</h3>
+            <p>
+              Short-term FX moves are notoriously difficult to predict. For small and medium amounts,
+              converting when you actually need the money is usually the right call — the expected
+              savings from waiting rarely justify the effort or the risk of the rate moving the wrong
+              way. For larger or recurring conversions, spreading the conversion across several tranches
+              is a well-established way to reduce timing risk. Our guide on
+              {' '}<Link to="/guides/best-time-to-exchange-currency">timing a currency conversion</Link>
+              {' '}covers this in depth.
+            </p>
+
           </>
         )}
-
-        {toProfile && (
-          <>
-            <h3>About the {toName} ({toCode})</h3>
-            <p>
-              <strong>Country:</strong> {toProfile.country}. <strong>Central bank:</strong> {toProfile.centralBank}.
-              {' '}<strong>Subunit:</strong> {toProfile.subunit}. <strong>Global rank:</strong> {toProfile.rank}.
-            </p>
-            <p>{toProfile.about}</p>
-            <p><strong>Where it's used:</strong> {toProfile.usage}</p>
-          </>
-        )}
-
-        <h3>Typical use cases for {fromCode} → {toCode}</h3>
-        <ul>
-          <li><strong>Travel:</strong> budgeting a trip, converting cash before departure, or understanding prices while on the ground.</li>
-          <li><strong>Online shopping:</strong> comparing a foreign-currency price against what your home card or wallet will actually charge.</li>
-          <li><strong>Remittances:</strong> estimating how much will land when sending money to family or friends abroad.</li>
-          <li><strong>Freelance and contract work:</strong> invoicing in one currency while the payer settles in another.</li>
-          <li><strong>Property, tuition, or medical costs abroad:</strong> planning large one-off payments.</li>
-        </ul>
-
-        <h3>Mid-market rate vs. the rate you'll actually pay</h3>
-        <p>
-          The rate shown here is the <strong>mid-market rate</strong> — the midpoint between the global
-          interbank bid and ask. No consumer actually transacts at this rate. Every provider adds a
-          spread or fee to cover its costs and profit:
-        </p>
-        <ul>
-          <li><strong>Banks:</strong> typically add 2%–4% plus a flat fee on international transfers.</li>
-          <li><strong>Credit and debit cards abroad:</strong> typically 1%–3% total, depending on issuer and network.</li>
-          <li><strong>Airport exchange kiosks:</strong> often 5%–12% worse than mid-market — the most expensive option.</li>
-          <li><strong>Online remittance specialists:</strong> usually 0.3%–1.5% all-in, often the best option for medium amounts.</li>
-        </ul>
-        <p>
-          To estimate the real cost of a conversion, multiply your amount by the mid-market rate
-          shown here, then subtract your provider's fee and the margin they charge on the rate.
-          For deeper guidance, see our guide on <Link to="/guides/sending-money-abroad">how to send money abroad</Link>.
-        </p>
-
-        <h3>What moves the {fromCode}/{toCode} rate</h3>
-        <p>
-          Day-to-day changes in {fromCode}/{toCode} are typically driven by relative interest rates
-          at {fromProfile?.centralBank || `${fromCode}'s central bank`} and
-          {' '}{toProfile?.centralBank || `${toCode}'s central bank`}, inflation data in both countries,
-          and the broader global risk environment. Larger swings tend to coincide with policy
-          announcements, political events, or unexpected economic data. To read more about what
-          drives FX rates generally, see our guide on
-          {' '}<Link to="/guides/how-exchange-rates-work">how exchange rates work</Link>.
-        </p>
-
-        <h3>Can I time this conversion?</h3>
-        <p>
-          Short-term FX moves are notoriously difficult to predict. For small and medium amounts,
-          converting when you actually need the money is usually the right call — the expected
-          savings from waiting rarely justify the effort or the risk of the rate moving the wrong
-          way. For larger or recurring conversions, spreading the conversion across several tranches
-          is a well-established way to reduce timing risk. Our guide on
-          {' '}<Link to="/guides/best-time-to-exchange-currency">timing a currency conversion</Link>
-          {' '}covers this in depth.
-        </p>
 
         <p>
           <strong>Disclaimer:</strong> rates shown are for reference and may differ from the rate
