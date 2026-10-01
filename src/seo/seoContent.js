@@ -34,24 +34,17 @@ export function pairUrl(from, to) {
 // Curated set of pairs we treat as "high-value" for indexing.
 // The converter still works for any supported pair, but only these get
 // indexed by search engines — everything else is rendered with noindex.
-// Logic:
-//   1. All POPULAR_PAIRS plus their reverses.
-//   2. All major-major combinations (USD/EUR/GBP/JPY/CHF/CAD/AUD/CNY).
-// This keeps Google's index focused on pages with depth, instead of 400+
-// auto-generated thin variants that trigger the "low-value content" flag.
-const MAJORS = ['USD', 'EUR', 'GBP', 'JPY', 'CHF', 'CAD', 'AUD', 'CNY']
-
+// Logic: all POPULAR_PAIRS plus their reverses, which are exactly the pairs
+// with a hand-written intro in src/content/pairProfiles.js and the pair URLs
+// listed in public/sitemap.xml. Every other pair is prerendered (so it is a
+// real page, not a 404) but carries noindex: without an editorial intro it is
+// template text with the currency codes swapped, the "low-value content"
+// pattern AdSense rejects.
 const indexedSet = new Set()
 
 for (const { from, to } of POPULAR_PAIRS) {
   indexedSet.add(`${from}-${to}`)
   indexedSet.add(`${to}-${from}`)
-}
-
-for (const a of MAJORS) {
-  for (const b of MAJORS) {
-    if (a !== b) indexedSet.add(`${a}-${b}`)
-  }
 }
 
 export function isIndexablePair(fromCode, toCode) {
