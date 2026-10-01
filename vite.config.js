@@ -8,11 +8,16 @@ import { dirname } from 'node:path'
 // Sources of truth:
 //   1. Static routes from src/App.jsx / src/ssg-entry.jsx
 //   2. Guide slugs from src/content/guides.js (16 guides)
-//   3. Pair slugs from src/content/pairProfiles.js (38 indexable pairs)
+//   3. Every ordered pair of supported currencies from src/constants/currencies.js.
+//      Only the curated subset is indexable (isIndexablePair) and listed in the
+//      sitemap; the rest still render with noindex. They are prerendered so
+//      that assets.not_found_handling can be "404-page": any URL without a
+//      file is then a real 404 instead of a soft-404 copy of the home page.
+//   4. /404 -> dist/404.html, the page Cloudflare serves for unknown URLs.
 async function buildIncludedRoutes() {
-  const [{ GUIDES }, { PAIR_PROFILES }] = await Promise.all([
+  const [{ GUIDES }, { CURRENCY_META }] = await Promise.all([
     import('./src/content/guides.js'),
-    import('./src/content/pairProfiles.js'),
+    import('./src/constants/currencies.js'),
   ])
 
   const staticRoutes = [
@@ -28,12 +33,12 @@ async function buildIncludedRoutes() {
   ]
 
   const guideRoutes = GUIDES.map((g) => `/guides/${g.slug}`)
-  const pairRoutes = Object.keys(PAIR_PROFILES).map((k) => {
-    const [from, to] = k.split('-')
-    return `/${from.toLowerCase()}-to-${to.toLowerCase()}`
-  })
+  const codes = CURRENCY_META.map((c) => c.code.toLowerCase())
+  const pairRoutes = codes.flatMap((from) =>
+    codes.filter((to) => to !== from).map((to) => `/${from}-to-${to}`)
+  )
 
-  return Array.from(new Set([...staticRoutes, ...guideRoutes, ...pairRoutes]))
+  return Array.from(new Set([...staticRoutes, ...guideRoutes, ...pairRoutes, '/404']))
 }
 
 // In-memory audit record, written to dist/.ssg-audit.json by onFinished.
@@ -92,7 +97,21 @@ export default defineConfig({
       const routes = await buildIncludedRoutes()
       return routes
     },
-    onPageRendered(route, html) {
+    onPageRendered(route, rawHtml) {
+      let html = rawHtml
+      // dist/404.html is served for every unknown URL, so in the browser it
+      // can match any route pattern (e.g. /guides/<bad-slug> -> guides/:slug),
+      // not just the one it was rendered with. Declare every route id in the
+      // hydration data so react-router hydrates immediately instead of
+      // rendering an empty fallback (see withNullLoaders in src/ssg-entry.jsx).
+      // Ids follow convertRoutesToDataRoutes: "0" for the layout, "0-<i>"
+      // for its children; 32 comfortably covers the route table.
+      if (route === '/404') {
+        const ids = ['0', ...Array.from({ length: 32 }, (_, i) => `0-${i}`)]
+        const loaderData = ids.map((id) => `\\"${id}\\":null`).join(',')
+        html = html.replace(/\\"loaderData\\":\{[^}]*\}/, `\\"loaderData\\":{${loaderData}}`)
+      }
+
       // React 19 + react-helmet-async ^3.0.0 do not populate the
       // helmetContext object that vite-react-ssg's RemixAdapter reads
       // from (the helmet README's "React 19 SSR note" calls this out:
@@ -173,6 +192,12 @@ export default defineConfig({
         /<meta\s+name="twitter:image"[^>]*>/i,
         /<link\s+rel="canonical"[^>]*>/i,
       ]
+      // Pages that opt out of indexing (noindex pairs, 404) emit their own
+      // robots meta; drop the template's "index, follow" so the head does
+      // not carry two contradictory directives.
+      if (/<meta\s+name="robots"/i.test(headBlock)) {
+        conflictPatterns.push(/<meta\s+name="robots"[^>]*>/i)
+      }
       // Only strip from inside <head> ... </head>
       const headOpenIdx = newHtml.indexOf('<head>')
       const headCloseIdx = newHtml.indexOf('</head>')
