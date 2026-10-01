@@ -29,3 +29,13 @@ commits: [12af4d0, d2d5927, 6babc6a, 94f6be1]
 
 ## Next
 - P3: upgrade 6 legacy guides (remove em-dashes, add citations, extend to 1,000+ words); fix "In today's" and "leverage" in hedge-basics.
+
+## P3 (guides), added 2026-10-01
+| Commit | Change |
+|---|---|
+| a09f878 | euro area 20 -> 21 members (Bulgaria, 1 Jan 2026, per European Commission); USD FX share 88% -> 89% (BIS 2025) |
+| 84ac659 | six legacy guides rewritten (1,000+ words, sourced, no em-dashes); 5 broken BIS links fixed; BIS 2025 turnover figure; citation added to how-exchange-rates-are-determined |
+
+- All 16 guides now 1,000+ rendered words with at least one external source.
+- Outbound links: all 200 except World Bank and IMF (bot-blocked, unverifiable headless) and LinkedIn (999 anti-bot).
+- hedge-basics "in today's"/"leverage" were false positives ("lock in today's rate", leveraged products): unchanged.
