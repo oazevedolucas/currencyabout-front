@@ -28,7 +28,7 @@ Phase: 03.1 — COMPLETE
 Plan: 1 of 1
 Last completed: 03 (performance-core-web-vitals) — closed 2026-05-21 with inferred PASS (T4/T6 Lighthouse measurement waived by user)
 Next recommended run: /gsd:plan-phase 03.1
-Last activity: 2026-05-22 -- Phase 03.1 marked complete
+Last activity: 2026-10-01 - Completed quick task 261001-ds0: AdSense technical fixes (verification meta, flat SSG URLs, hydration + zero-rate fixes, real 404)
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -74,6 +74,12 @@ Decisions are logged in PROJECT.md Key Decisions table. Active decisions affecti
 ### Pending Todos
 
 No pending todos. Decisions and constraints are captured in PROJECT.md and ROADMAP.md.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 261001-ds0 | AdSense technical fixes: verification meta, flat SSG URLs, hydration + zero-rate fixes, real 404 | 2026-10-01 | 0a43989 | [261001-ds0-adsense-technical-fixes-prerender-404-cm](./quick/261001-ds0-adsense-technical-fixes-prerender-404-cm/) |
 
 ### Research Artifacts
 
